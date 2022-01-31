@@ -9,24 +9,30 @@
 /* Begin PBXBuildFile section */
 		5EC9940227A3A7F50051C5FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9940127A3A7F50051C5FF /* AppDelegate.swift */; };
 		5EC9940427A3A7F50051C5FF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9940327A3A7F50051C5FF /* GameScene.sks */; };
-		5EC9940627A3A7F50051C5FF /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9940527A3A7F50051C5FF /* Actions.sks */; };
 		5EC9940827A3A7F50051C5FF /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9940727A3A7F50051C5FF /* GameScene.swift */; };
 		5EC9940A27A3A7F50051C5FF /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9940927A3A7F50051C5FF /* GameViewController.swift */; };
 		5EC9940D27A3A7F50051C5FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9940B27A3A7F50051C5FF /* Main.storyboard */; };
 		5EC9940F27A3A7F60051C5FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9940E27A3A7F60051C5FF /* Assets.xcassets */; };
 		5EC9941227A3A7F60051C5FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9941027A3A7F60051C5FF /* LaunchScreen.storyboard */; };
+		5EC9941927A3C6990051C5FF /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941827A3C6990051C5FF /* Player.swift */; };
+		5EC9941B27A3CB730051C5FF /* Slalom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941A27A3CB730051C5FF /* Slalom.swift */; };
+		5EC9941D27A3CBF80051C5FF /* SlalomType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941C27A3CBF80051C5FF /* SlalomType.swift */; };
+		5EC9941F27A3D04B0051C5FF /* SlalomSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5EC993FE27A3A7F50051C5FF /* Super Slalom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Super Slalom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC9940127A3A7F50051C5FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EC9940327A3A7F50051C5FF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		5EC9940527A3A7F50051C5FF /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		5EC9940727A3A7F50051C5FF /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		5EC9940927A3A7F50051C5FF /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		5EC9940C27A3A7F50051C5FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EC9940E27A3A7F60051C5FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EC9941127A3A7F60051C5FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5EC9941827A3C6990051C5FF /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		5EC9941A27A3CB730051C5FF /* Slalom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slalom.swift; sourceTree = "<group>"; };
+		5EC9941C27A3CBF80051C5FF /* SlalomType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlalomType.swift; sourceTree = "<group>"; };
+		5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlalomSpawner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,12 +67,15 @@
 			children = (
 				5EC9940127A3A7F50051C5FF /* AppDelegate.swift */,
 				5EC9940327A3A7F50051C5FF /* GameScene.sks */,
-				5EC9940527A3A7F50051C5FF /* Actions.sks */,
 				5EC9940727A3A7F50051C5FF /* GameScene.swift */,
 				5EC9940927A3A7F50051C5FF /* GameViewController.swift */,
 				5EC9940B27A3A7F50051C5FF /* Main.storyboard */,
 				5EC9940E27A3A7F60051C5FF /* Assets.xcassets */,
 				5EC9941027A3A7F60051C5FF /* LaunchScreen.storyboard */,
+				5EC9941827A3C6990051C5FF /* Player.swift */,
+				5EC9941A27A3CB730051C5FF /* Slalom.swift */,
+				5EC9941C27A3CBF80051C5FF /* SlalomType.swift */,
+				5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */,
 			);
 			path = "Super Slalom";
 			sourceTree = "<group>";
@@ -133,7 +142,6 @@
 				5EC9940427A3A7F50051C5FF /* GameScene.sks in Resources */,
 				5EC9940F27A3A7F60051C5FF /* Assets.xcassets in Resources */,
 				5EC9941227A3A7F60051C5FF /* LaunchScreen.storyboard in Resources */,
-				5EC9940627A3A7F50051C5FF /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,9 +152,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EC9941927A3C6990051C5FF /* Player.swift in Sources */,
 				5EC9940827A3A7F50051C5FF /* GameScene.swift in Sources */,
 				5EC9940A27A3A7F50051C5FF /* GameViewController.swift in Sources */,
+				5EC9941D27A3CBF80051C5FF /* SlalomType.swift in Sources */,
 				5EC9940227A3A7F50051C5FF /* AppDelegate.swift in Sources */,
+				5EC9941F27A3D04B0051C5FF /* SlalomSpawner.swift in Sources */,
+				5EC9941B27A3CB730051C5FF /* Slalom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
