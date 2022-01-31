@@ -1,12 +1,6 @@
-//
-//  GameScene.swift
-//  Super Slalom
-//
-//  Created by Bruno Thuma on 28/01/22.
-//
-
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -22,27 +16,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var lastUpdate = TimeInterval(0)
     
+    var motionManager: CMMotionManager!
+    var destX: CGFloat!
+    
+    // MARK: Overriden methods
+    
     override func didMove(to view: SKView) {
         
-        physicsWorld.contactDelegate = self
+        view.showsPhysics = true
         
-        addSwipeGestureRecognizers()
+        physicsWorld.contactDelegate = self
         
         // Setup player
         let playerNode = (self.childNode(withName: "Player") as! SKSpriteNode)
         player = Player(node: playerNode)
         
-        let redSlalomNode = (self.childNode(withName: "RedSlalom") as! SKSpriteNode)
-        let blueSlalomNode = (self.childNode(withName: "BlueSlalom")  as! SKSpriteNode)
-        slalomSpawner = SlalomSpawner(redSlalomModel: redSlalomNode,
-                                      blueSlalomModel: blueSlalomNode,
-                                      parent: self)
-        
+        // Setup labels
         pointsLabel = (self.childNode(withName: "PointsLabel") as! SKLabelNode)
-        
         livesLabel = (self.childNode(withName: "LivesLabel") as! SKLabelNode)
         
-        view.showsPhysics = false
+        setupSlalomSpawner()
+        
+        setupMotionManager()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -74,7 +69,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Update time on slalomSpawner
         slalomSpawner.update(deltaTime: deltaTime)
+        
+        player.move(destX)
     }
+    
+    // MARK: Setup methods
+    
+    func setupMotionManager() {
+        self.motionManager = CMMotionManager()
+        self.destX = 0.0
+        
+        if motionManager.isAccelerometerAvailable {
+            
+            motionManager.accelerometerUpdateInterval = 0.01
+            motionManager.startAccelerometerUpdates(to: .main) { (data, error) in
+                
+                guard let data = data, error == nil else {
+                    return
+                }
+                
+                let currentX = self.player.node.position.x
+                self.destX = currentX + CGFloat(data.acceleration.x * 15)
+            }
+        }
+    }
+    
+    func setupSlalomSpawner() {
+        let redSlalomNode = (self.childNode(withName: "RedSlalom") as! SKSpriteNode)
+        let blueSlalomNode = (self.childNode(withName: "BlueSlalom")  as! SKSpriteNode)
+        slalomSpawner = SlalomSpawner(redSlalomModel: redSlalomNode,
+                                      blueSlalomModel: blueSlalomNode,
+                                      parent: self)
+    }
+    
+    // MARK: Nodes contact methods
     
     func didBegin(_ contact: SKPhysicsContact) {
         // Filters possible contacts envolving the player
@@ -100,32 +128,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.lives -= 1
             
             // FIXME: Remove max verification and do proper game over
-            livesLabel.text = String(repeating: "❤️", count: max(player.lives, 1))
-        }
-    }
-    
-    func addSwipeGestureRecognizers() {
-        let gestureDirections: [UISwipeGestureRecognizer.Direction] = [.left, .right]
-        
-        for gestureDirection in gestureDirections {
-            let gestureRecognizer = UISwipeGestureRecognizer(target: self,
-                                                             action: #selector(handleSwipe))
-            gestureRecognizer.direction = gestureDirection
-            self.view?.addGestureRecognizer(gestureRecognizer)
-        }
-    }
-    
-    @objc func handleSwipe(gesture: UIGestureRecognizer) {
-        if let gesture = gesture as? UISwipeGestureRecognizer {
-//            switch gesture.direction {
-//            case .left:
-//                print("left")
-//            case .right:
-//                print("right")
-//            default:
-//                print("non treated swipe gesture")
-//            }
-            player.move(direction: gesture.direction)
+            livesLabel.text = String(repeating: "❤️ ", count: max(player.lives, 1))
         }
     }
 }

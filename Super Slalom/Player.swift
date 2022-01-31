@@ -34,6 +34,10 @@ class Player {
         }
     }
     
+    func move(_ destX: CGFloat) {
+        node.position.x = destX
+    }
+    
     func changeStickColor(color: SlalomType) {
         switch color {
         case .blue:
