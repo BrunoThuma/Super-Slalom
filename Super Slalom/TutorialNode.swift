@@ -1,16 +1,14 @@
 //
-//  Slalom.swift
+//  TutorialNode.swift
 //  Super Slalom
 //
-//  Created by Bruno Thuma on 28/01/22.
+//  Created by Bruno Thuma on 01/02/22.
 //
 
 import SpriteKit
 
-struct Slalom {
+struct TutorialNode {
     let node: SKSpriteNode
-    let color: SlalomType
-    var wasHit: Bool = false
     
     func setupAnimation () {
         var textures = [SKTexture]()

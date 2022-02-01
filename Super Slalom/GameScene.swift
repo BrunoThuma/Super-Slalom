@@ -13,7 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var livesLabel: SKLabelNode!
     
     var gameOverNode: SKSpriteNode!
-    var introNode: SKSpriteNode!
+    var tutorialScene: TutorialNode!
     
     var lastUpdate = TimeInterval(0)
     
@@ -39,11 +39,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pointsLabel = (self.childNode(withName: "PointsLabel") as! SKLabelNode)
         livesLabel = (self.childNode(withName: "LivesLabel") as! SKLabelNode)
         
-        introNode = childNode(withName: "Tutorial") as? SKSpriteNode
+        let introNode = (childNode(withName: "Tutorial") as! SKSpriteNode)
+        tutorialScene = TutorialNode(node: introNode)
         
         // Setup game over and remove from screen for now
         gameOverNode = (self.childNode(withName: "GameOver") as! SKSpriteNode)
         gameOverNode.removeFromParent()
+        
+        setupAnimations()
         
         setupSlalomSpawner()
         
@@ -89,7 +92,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func start() {
         status = .playing
         addChild(player.node)
-        introNode.removeFromParent()
+        tutorialScene.node.removeFromParent()
     }
     
     // MARK: Playing status methods
@@ -129,12 +132,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func reset() {
         status = .intro
-        addChild(introNode)
+        addChild(tutorialScene.node)
         player.reset()
         slalomSpawner.reset()
     }
     
     // MARK: Setup methods
+    
+    func setupAnimations() {
+        
+        tutorialScene.setupAnimation()
+        
+    }
     
     func setupMotionManager() {
         self.motionManager = CMMotionManager()

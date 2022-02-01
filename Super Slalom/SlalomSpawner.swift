@@ -9,8 +9,8 @@ import Foundation
 import SpriteKit
 
 class SlalomSpawner {
-    private var redSlalomModel: SKNode
-    private var blueSlalomModel: SKNode
+    private var redSlalomModel: SKSpriteNode
+    private var blueSlalomModel: SKSpriteNode
     private var parent: SKNode
     private var slaloms = [Slalom]()
     
@@ -20,7 +20,7 @@ class SlalomSpawner {
     
     private let spawnInterval: TimeInterval = 3
     
-    init(redSlalomModel: SKNode, blueSlalomModel: SKNode, parent: SKNode) {
+    init(redSlalomModel: SKSpriteNode, blueSlalomModel: SKSpriteNode, parent: SKNode) {
         self.redSlalomModel = redSlalomModel
         self.blueSlalomModel = blueSlalomModel
         self.parent = parent
@@ -39,9 +39,10 @@ class SlalomSpawner {
         
         // Move all slaloms
         for slalom in slaloms {
-            slalom.node.position.y += 50 * deltaTime
+            slalom.node.position.y += 100 * deltaTime
         }
         
+        // Eliminate first slalom in case it reaches the end of frame
         if let firstSlalom = slaloms.first {
             if firstSlalom.node.position.y >= parent.frame.maxY {
                 firstSlalom.node.removeFromParent()
@@ -50,32 +51,24 @@ class SlalomSpawner {
         }
     }
     
-//    func didPlayerSuccessfullyScore(_ playerPosition: CGPoint) -> Bool {
-//        
-//        let slalomMaxY: CGFloat = slaloms.first!.node.position.y + 25
-//        let slalomMinY: CGFloat = slaloms.first!.node.position.y - 25
-//
-//        if slaloms.first!.node.position.y > (playerPosition.y + 50) {
-//            return slaloms.first!.wasHit
-//        }
-//
-//
-//    }
-    
     func spawn() {
-        let newSlalom: SKNode!
+        let newSlalomNode: SKSpriteNode!
+        let newSlalom: Slalom!
+        
         if isBlueSlalom {
-            newSlalom = (blueSlalomModel.copy() as! SKNode)
-            slaloms.append(Slalom(node: newSlalom as! SKSpriteNode, color: .blue))
+            newSlalomNode = (blueSlalomModel.copy() as! SKSpriteNode)
+            newSlalom = Slalom(node: newSlalomNode, color: .blue)
+            slaloms.append(newSlalom)
             isBlueSlalom = false
+        } else {
+            newSlalomNode = (redSlalomModel.copy() as! SKSpriteNode)
+            newSlalom = Slalom(node: newSlalomNode, color: .red)
+            slaloms.append(newSlalom)
+            
+            isBlueSlalom = true
         }
-        else {
-                newSlalom = (redSlalomModel.copy() as! SKNode)
-                slaloms.append(Slalom(node: newSlalom as! SKSpriteNode, color: .red))
-                isBlueSlalom = true
-        }
-        newSlalom.position.x = CGFloat.random(in: -100...100)
-        parent.addChild(newSlalom)
+        newSlalomNode.position.x = CGFloat.random(in: -100...100)
+        parent.addChild(newSlalomNode)
         
     }
     
