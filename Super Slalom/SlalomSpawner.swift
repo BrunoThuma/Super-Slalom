@@ -43,12 +43,24 @@ class SlalomSpawner {
         }
         
         if let firstSlalom = slaloms.first {
-            if firstSlalom.node.position.y >= 270 {
+            if firstSlalom.node.position.y >= parent.frame.maxY {
                 firstSlalom.node.removeFromParent()
                 slaloms.removeFirst(1)
             }
         }
     }
+    
+//    func didPlayerSuccessfullyScore(_ playerPosition: CGPoint) -> Bool {
+//        
+//        let slalomMaxY: CGFloat = slaloms.first!.node.position.y + 25
+//        let slalomMinY: CGFloat = slaloms.first!.node.position.y - 25
+//
+//        if slaloms.first!.node.position.y > (playerPosition.y + 50) {
+//            return slaloms.first!.wasHit
+//        }
+//
+//
+//    }
     
     func spawn() {
         let newSlalom: SKNode!

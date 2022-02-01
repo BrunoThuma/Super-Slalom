@@ -10,32 +10,27 @@ import SpriteKit
 
 class Player {
     
+    let parent: SKNode
+    
+    let startPosition: CGPoint
+    
     let node: SKSpriteNode!
     
     var stickColor: SlalomType!
     
     var lives: Int
     
-    init(node: SKSpriteNode) {
+    init(node: SKSpriteNode, parentNode: SKNode) {
         self.node = node
-        self.lives = 3
-    }
-    
-    func move(direction: UISwipeGestureRecognizer.Direction) {
-        switch direction {
-        case .right:
-            node.run(SKAction.move(by: CGVector(dx: 35, dy: 0), duration: 0.2))
-            
-        case .left:
-            node.run(SKAction.move(by: CGVector(dx: -35, dy: 0), duration: 0.2))
-            
-        default:
-            break
-        }
+        self.lives = 5
+        self.startPosition = node.position
+        self.parent = parentNode
     }
     
     func move(_ destX: CGFloat) {
-        node.position.x = destX
+        if destX < parent.frame.maxX && destX > parent.frame.minX {
+            node.position.x = destX
+        }
     }
     
     func changeStickColor(color: SlalomType) {
@@ -45,5 +40,9 @@ class Player {
         case .red:
             stickColor = .red
         }
+    }
+    
+    func reset() {
+        lives = 5
     }
 }

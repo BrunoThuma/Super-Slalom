@@ -10,4 +10,5 @@ import SpriteKit
 struct Slalom {
     let node: SKSpriteNode
     let color: SlalomType
+    var wasHit: Bool = false
 }
