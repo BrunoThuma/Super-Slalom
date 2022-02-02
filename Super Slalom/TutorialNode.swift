@@ -13,8 +13,8 @@ struct TutorialNode {
     func setupAnimation () {
         var textures = [SKTexture]()
         
-        textures.append(SKTexture(imageNamed: "intro-1"))
-        textures.append(SKTexture(imageNamed: "intro-2"))
+        textures.append(SKTexture(imageNamed: "intro1"))
+        textures.append(SKTexture(imageNamed: "intro2"))
         
         let frames = SKAction.animate(with: textures,
                                       timePerFrame: 0.5,
