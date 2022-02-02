@@ -31,7 +31,7 @@ class Player {
     }
     
     func move(_ destX: CGFloat) {
-        if destX < parent.frame.maxX && destX > parent.frame.minX {
+        if destX < 180 && destX > -180 {
             node.position.x = destX
         }
     }

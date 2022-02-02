@@ -68,10 +68,15 @@ class SlalomSpawner {
     func reset() {
         for slalom in slaloms {
             slalom.removeFromParent()
-            slalom.removeAllActions()
         }
         
         slaloms.removeAll()
         currentTime = spawnInterval
+    }
+    
+    func gameOver() {
+        for slalom in slaloms {
+            slalom.removeAllActions()
+        }
     }
 }

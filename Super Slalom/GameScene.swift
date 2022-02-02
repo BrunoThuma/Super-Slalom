@@ -8,12 +8,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var slalomSpawner: SlalomSpawner!
     
     var points: Int = 0
-    var pointsLabel: SKLabelNode!
+    var distance: Float = 0.0
     
+    var hub: SKSpriteNode!
+    var pointsLabel: SKLabelNode!
     var livesLabel: SKLabelNode!
+    var distanceLabel: SKLabelNode!
     
     var gameOverNode: SKNode!
-    var tutorialScene: TutorialNode!
+    var tutorialOverlay: TutorialNode!
     
     var lastUpdate = TimeInterval(0)
     
@@ -36,19 +39,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.removeFromParent()
         
         // Setup labels
-        pointsLabel = (self.childNode(withName: "PointsLabel") as! SKLabelNode)
-        livesLabel = (self.childNode(withName: "LivesLabel") as! SKLabelNode)
+        hub = (self.childNode(withName: "HUB") as! SKSpriteNode)
+        pointsLabel = (hub.childNode(withName: "PointsLabel") as! SKLabelNode)
+        livesLabel = (hub.childNode(withName: "LivesLabel") as! SKLabelNode)
+        distanceLabel = (hub.childNode(withName: "DistanceLabel") as! SKLabelNode)
         
         let introNode = (childNode(withName: "Tutorial") as! SKSpriteNode)
-        tutorialScene = TutorialNode(node: introNode)
+        tutorialOverlay = TutorialNode(node: introNode)
         
         // Setup game over and remove from screen for now
         gameOverNode = self.childNode(withName: "GameOver")
         gameOverNode.removeFromParent()
         
-        setupAnimations()
+        // Setup tutorial overlay animation
+        tutorialOverlay.setupAnimation()
         
-        setupSlalomSpawner()
+        // Setup slalom spawner
+        slalomSpawner = SlalomSpawner(parent: self)
         
         setupMotionManager()
     }
@@ -61,7 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case .playing:
             verifyTouches(touches: touches)
         case .gameOver:
-            break
+            reset()
         }
         
     }
@@ -80,7 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case .intro:
             break
         case .playing:
-            playingStatusUpdate(deltaTime: deltaTime)
+            playingStatusUpdate(currentTime: currentTime, deltaTime: deltaTime)
         case .gameOver:
             break
         }
@@ -92,7 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func start() {
         status = .playing
         addChild(player.node)
-        tutorialScene.node.removeFromParent()
+        tutorialOverlay.node.removeFromParent()
     }
     
     // MARK: Playing status methods
@@ -116,34 +123,50 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     
-    func playingStatusUpdate(deltaTime: TimeInterval) {
+    func playingStatusUpdate(currentTime: TimeInterval, deltaTime: TimeInterval) {
         // Update time on slalomSpawner
         slalomSpawner.update(deltaTime: deltaTime)
         
         player.move(destX)
+        
+        distance += Float(deltaTime) * 2
+        
+        distanceLabel.text = "\(Int(distance.rounded()))m"
     }
     
     // MARK: Game Over methods
     
     func gameOver() {
         status = .gameOver
+        slalomSpawner.gameOver()
         addChild(gameOverNode)
+        
+        let gameOverPoints = (gameOverNode.childNode(withName: "GameOverPointsLabel") as! SKLabelNode)
+        let gameOverDistance = (gameOverNode.childNode(withName: "GameOverDistanceLabel") as! SKLabelNode)
+        
+        gameOverPoints.text = "\(points)"
+        gameOverDistance.text = "\(Int(distance.rounded()))m"
     }
     
     func reset() {
+        gameOverNode.removeFromParent()
+        player.node.removeFromParent()
         status = .intro
-        addChild(tutorialScene.node)
+        addChild(tutorialOverlay.node)
         player.reset()
         slalomSpawner.reset()
+        
+        points = 0
+        pointsLabel.text = "\(points)"
+        
+        player.lives = 5
+        livesLabel.text = "\(player.lives)"
+        
+        distance = 0.0
+        distanceLabel.text = "\(Int(distance.rounded()))m"
     }
     
     // MARK: Setup methods
-    
-    func setupAnimations() {
-        
-        tutorialScene.setupAnimation()
-        
-    }
     
     func setupMotionManager() {
         self.motionManager = CMMotionManager()
@@ -192,13 +215,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if slalomNode.slalomType == player.stickColor {
             points += 1
-            pointsLabel.text = "\(points) 🏴"
-            slalomNode.wasHit = true
+            pointsLabel.text = "\(points)"
         } else {
-            
             discountPlayerLife()
-            
         }
+        
+        slalomNode.wasHit = true
     }
     
     func discountPlayerLife() {
@@ -207,7 +229,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if player.lives <= 0 {
             gameOver()
         } else {
-            livesLabel.text = "\(player.lives)❤️"
+            livesLabel.text = "\(player.lives)"
         }
     }
 }
