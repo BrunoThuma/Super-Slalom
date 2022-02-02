@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E1916F627A9CD3300B1D31A /* TutorialNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1916F527A9CD3300B1D31A /* TutorialNode.swift */; };
+		5E1916F827AA329E00B1D31A /* ObstacleSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */; };
 		5EC9940227A3A7F50051C5FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9940127A3A7F50051C5FF /* AppDelegate.swift */; };
 		5EC9940427A3A7F50051C5FF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9940327A3A7F50051C5FF /* GameScene.sks */; };
 		5EC9940827A3A7F50051C5FF /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9940727A3A7F50051C5FF /* GameScene.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		5E1916F527A9CD3300B1D31A /* TutorialNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialNode.swift; sourceTree = "<group>"; };
+		5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleSpawner.swift; sourceTree = "<group>"; };
 		5EC993FE27A3A7F50051C5FF /* Super Slalom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Super Slalom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC9940127A3A7F50051C5FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EC9940327A3A7F50051C5FF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				5EC9940E27A3A7F60051C5FF /* Assets.xcassets */,
 				5EC9941027A3A7F60051C5FF /* LaunchScreen.storyboard */,
 				5E1916F527A9CD3300B1D31A /* TutorialNode.swift */,
+				5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */,
 			);
 			path = "Super Slalom";
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				5EC9941D27A3CBF80051C5FF /* SlalomType.swift in Sources */,
 				5EC9940227A3A7F50051C5FF /* AppDelegate.swift in Sources */,
 				5EC9941F27A3D04B0051C5FF /* SlalomSpawner.swift in Sources */,
+				5E1916F827AA329E00B1D31A /* ObstacleSpawner.swift in Sources */,
 				5EC9941B27A3CB730051C5FF /* Slalom.swift in Sources */,
 				5E1916F627A9CD3300B1D31A /* TutorialNode.swift in Sources */,
 			);

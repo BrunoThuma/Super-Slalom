@@ -25,6 +25,9 @@ class Player {
         self.lives = 5
         self.startPosition = node.position
         self.parent = parentNode
+        
+        node.size = CGSize(width: node.size.width + 5,
+                           height: node.size.height + 5)
     }
     
     func move(_ destX: CGFloat) {
@@ -34,11 +37,14 @@ class Player {
     }
     
     func changeStickColor(color: SlalomType) {
+        
+        stickColor = color
+        
         switch color {
         case .blue:
-            stickColor = .blue
+            node.texture = SKTexture(imageNamed: "player_blue")
         case .red:
-            stickColor = .red
+            node.texture = SKTexture(imageNamed: "player_pink")
         }
     }
     

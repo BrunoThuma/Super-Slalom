@@ -12,7 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var livesLabel: SKLabelNode!
     
-    var gameOverNode: SKSpriteNode!
+    var gameOverNode: SKNode!
     var tutorialScene: TutorialNode!
     
     var lastUpdate = TimeInterval(0)
@@ -26,7 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
-        view.showsPhysics = false
+        view.showsPhysics = true
         
         physicsWorld.contactDelegate = self
         
@@ -43,7 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tutorialScene = TutorialNode(node: introNode)
         
         // Setup game over and remove from screen for now
-        gameOverNode = (self.childNode(withName: "GameOver") as! SKSpriteNode)
+        gameOverNode = self.childNode(withName: "GameOver")
         gameOverNode.removeFromParent()
         
         setupAnimations()
@@ -165,11 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setupSlalomSpawner() {
-        let redSlalomNode = (self.childNode(withName: "RedSlalom") as! SKSpriteNode)
-        let blueSlalomNode = (self.childNode(withName: "BlueSlalom")  as! SKSpriteNode)
-        slalomSpawner = SlalomSpawner(redSlalomModel: redSlalomNode,
-                                      blueSlalomModel: blueSlalomNode,
-                                      parent: self)
+        slalomSpawner = SlalomSpawner(parent: self)
     }
     
     // MARK: Nodes contact methods
@@ -186,23 +182,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func playerContact(with node: SKNode) {
-        // Gets node usarData for slalom verification
-        let isRedSlalom = node.userData?.value(forKey: "isRed") as! Bool
+        guard let slalomNode = node as! Slalom? else {
+            return
+        }
         
-        let slalomType: SlalomType = isRedSlalom ? .red : .blue
+        guard !slalomNode.wasHit else {
+            return
+        }
         
-        if slalomType == player.stickColor {
+        if slalomNode.slalomType == player.stickColor {
             points += 1
             pointsLabel.text = "\(points) 🏴"
+            slalomNode.wasHit = true
         } else {
-            player.lives -= 1
             
-            if player.lives <= 0 {
-                gameOver()
-            } else {
-                livesLabel.text = "\(player.lives)❤️"
-            }
+            discountPlayerLife()
             
+        }
+    }
+    
+    func discountPlayerLife() {
+        player.lives -= 1
+        
+        if player.lives <= 0 {
+            gameOver()
+        } else {
+            livesLabel.text = "\(player.lives)❤️"
         }
     }
 }
