@@ -31,7 +31,7 @@ class Slalom: SKSpriteNode {
         
         self.size = CGSize(width: 77, height: 46)
         
-        self.zPosition = 1
+        self.zPosition = 0
         
         self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width,
                                                              height: self.size.height / 2),

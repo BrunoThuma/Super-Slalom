@@ -29,7 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
-        view.showsPhysics = true
+        view.showsPhysics = false
         
         physicsWorld.contactDelegate = self
         
@@ -58,6 +58,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         slalomSpawner = SlalomSpawner(parent: self)
         
         setupMotionManager()
+    }
+    
+    // Changing to custom font
+    
+    func loadFonts() {
+        guard let customFont = UIFont(name: "Rubik-Black", size: 80) else {
+            fatalError("""
+                Failed to load the "CustomFont-Light" font.
+                Make sure the font file is included in the project and the font name is spelled correctly.
+                """
+            )
+        }
+        livesLabel.fontName = "Rubik-Black"
+//        livesLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
+//        livesLabel.adjustsFontForContentSizeCategory = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
