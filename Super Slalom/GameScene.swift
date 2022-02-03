@@ -4,34 +4,39 @@ import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var player: Player!
-    var slalomSpawner: SlalomSpawner!
-    
-    var points: Int = 0
-    var distance: Float = 0.0
-    
-    var hub: SKSpriteNode!
-    var pointsLabel: SKLabelNode!
-    var livesLabel: SKLabelNode!
-    var distanceLabel: SKLabelNode!
-    
-    var gameOverNode: SKNode!
-    var tutorialOverlay: TutorialNode!
-    
-    var lastUpdate = TimeInterval(0)
-    
-    var motionManager: CMMotionManager!
-    var destX: CGFloat!
+    static var sharedInstance: GameScene = GameScene()
     
     var status: GameStatus = .intro
+    
+    private var player: Player!
+    private var slalomSpawner: SlalomSpawner!
+    
+    private var points: Int = 0
+    private var distance: Float = 0.0
+    
+    private var hub: SKSpriteNode!
+    private var pointsLabel: SKLabelNode!
+    private var livesLabel: SKLabelNode!
+    private var distanceLabel: SKLabelNode!
+    private var pausedLabel: SKLabelNode!
+    
+    private var gameOverNode: SKNode!
+    private var tutorialOverlay: TutorialNode!
+    
+    private var lastUpdate = TimeInterval(0)
+    
+    private var motionManager: CMMotionManager!
+    private var destX: CGFloat!
     
     // MARK: Overriden methods
     
     override func didMove(to view: SKView) {
         
-        view.showsPhysics = false
+        view.showsPhysics = true
         
         physicsWorld.contactDelegate = self
+        
+        GameScene.sharedInstance = self
         
         // Setup player
         let playerNode = (self.childNode(withName: "Player") as! SKSpriteNode)
@@ -51,6 +56,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameOverNode = self.childNode(withName: "GameOver")
         gameOverNode.removeFromParent()
         
+        pausedLabel = (childNode(withName: "PausedLabel") as! SKLabelNode)
+        pausedLabel.removeFromParent()
+        
         // Setup tutorial overlay animation
         tutorialOverlay.setupAnimation()
         
@@ -63,16 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Changing to custom font
     
     func loadFonts() {
-        guard let customFont = UIFont(name: "Rubik-Black", size: 80) else {
-            fatalError("""
-                Failed to load the "CustomFont-Light" font.
-                Make sure the font file is included in the project and the font name is spelled correctly.
-                """
-            )
-        }
         livesLabel.fontName = "Rubik-Black"
-//        livesLabel.font = UIFontMetrics.default.scaledFont(for: customFont)
-//        livesLabel.adjustsFontForContentSizeCategory = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,6 +81,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             start()
         case .playing:
             verifyTouches(touches: touches)
+        case .paused:
+            unpauseGame()
         case .gameOver:
             reset()
         }
@@ -103,6 +104,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             break
         case .playing:
             playingStatusUpdate(currentTime: currentTime, deltaTime: deltaTime)
+        case .paused:
+            break
         case .gameOver:
             break
         }
@@ -147,6 +150,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         distance += Float(deltaTime) * 2
         
         distanceLabel.text = "\(Int(distance.rounded()))m"
+    }
+    
+    // MARK: Pause methods
+    
+    func pauseGame() {
+        status = .paused
+        addChild(pausedLabel)
+    }
+    
+    func unpauseGame() {
+        status = .playing
+        pausedLabel.removeFromParent()
     }
     
     // MARK: Game Over methods
@@ -252,5 +267,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 enum GameStatus {
     case intro
     case playing
+    case paused
     case gameOver
 }

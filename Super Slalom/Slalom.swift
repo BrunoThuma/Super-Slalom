@@ -45,6 +45,8 @@ class Slalom: SKSpriteNode {
         self.physicsBody?.collisionBitMask = 0
         // Contacts with everybody
         self.physicsBody?.contactTestBitMask = UInt32.max
+        
+        self.yScale = -1
     }
     
     required init?(coder aDecoder: NSCoder) {
