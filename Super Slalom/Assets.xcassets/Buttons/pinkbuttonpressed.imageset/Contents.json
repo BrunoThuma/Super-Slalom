@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "pinkbuttonnormal.png",
+      "filename" : "pinkbuttonpressed.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "pinkbuttonpressed@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "pinkbuttonpressed@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

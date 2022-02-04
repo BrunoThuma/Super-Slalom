@@ -10,6 +10,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var player: Player!
     private var slalomSpawner: SlalomSpawner!
+    private var obstacleSpawner: ObstacleSpawner!
     
     private var points: Int = 0
     private var distance: Float = 0.0
@@ -28,6 +29,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var motionManager: CMMotionManager!
     private var destX: CGFloat!
     
+    var difficultyScale: CGFloat = 2.0 // bandeira.wasHit -> difficulty += 0.01
+    
     // MARK: Overriden methods
     
     override func didMove(to view: SKView) {
@@ -42,6 +45,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let playerNode = (self.childNode(withName: "Player") as! SKSpriteNode)
         player = Player(node: playerNode, parentNode: self)
         playerNode.removeFromParent()
+        
+        // Setup tree on the side of playable area
+        let treeNode = (self.childNode(withName: "Tree") as! SKSpriteNode)
+        obstacleSpawner = ObstacleSpawner(obstacleModel: treeNode, parent: self)
         
         // Setup labels
         hub = (self.childNode(withName: "HUB") as! SKSpriteNode)
@@ -142,8 +149,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func playingStatusUpdate(currentTime: TimeInterval, deltaTime: TimeInterval) {
-        // Update time on slalomSpawner
-        slalomSpawner.update(deltaTime: deltaTime)
+        // Update time on slalomSpawner and obstacleSpawner
+        slalomSpawner.update(deltaTime: deltaTime, difficultyScale: difficultyScale)
+        obstacleSpawner.update(deltaTime: deltaTime, difficultyScale: difficultyScale)
         
         player.move(destX)
         
@@ -212,7 +220,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 
                 let currentX = self.player.node.position.x
-                self.destX = currentX + CGFloat(data.acceleration.x * 20)
+                self.destX = currentX + CGFloat(data.acceleration.x * 30)
             }
         }
     }
@@ -233,6 +241,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             playerContact(with: contact.bodyA.node!)
         }
     }
+    
+    // SKNode -> SKSpriteNode -> Slalom
+    // node           ->         slalomNode
     
     func playerContact(with node: SKNode) {
         guard let slalomNode = node as! Slalom? else {

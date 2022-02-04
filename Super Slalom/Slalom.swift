@@ -7,6 +7,7 @@
 
 import SpriteKit
 
+
 class Slalom: SKSpriteNode {
     var slalomType: SlalomType
     var wasHit: Bool
@@ -56,8 +57,9 @@ class Slalom: SKSpriteNode {
     func setupAnimation () {
         var textures = [SKTexture]()
         
-        textures.append(SKTexture(imageNamed: slalomType.left))
-        textures.append(SKTexture(imageNamed: slalomType.right))
+        // slalomType = .red
+        textures.append(SKTexture(imageNamed: slalomType.left)) // -> "pinkflag_left"
+        textures.append(SKTexture(imageNamed: slalomType.right)) // -> "pinkflag_right"
         
         let frames = SKAction.animate(with: textures,
                                       timePerFrame: 0.8,

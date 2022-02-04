@@ -17,19 +17,21 @@ class SlalomSpawner {
         currentTime = spawnInterval
     }
     
-    func update(deltaTime: TimeInterval) {
+    func update(deltaTime: TimeInterval, difficultyScale: CGFloat) {
         
         currentTime += deltaTime
         
         // Calculate interval
-        if currentTime > spawnInterval {
+        if currentTime > spawnInterval / difficultyScale {
             spawn()
             currentTime -= spawnInterval
         }
         
+        
         // Move all slaloms
         for slalom in slaloms {
-            slalom.position.y += 100 * deltaTime
+            slalom.position.y += 100 * deltaTime * difficultyScale
+            
         }
         
         // Eliminate first slalom in case it reaches the end of frame

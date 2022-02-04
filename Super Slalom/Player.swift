@@ -36,6 +36,7 @@ class Player {
         }
     }
     
+    // Called when player presses buttons
     func changeStickColor(color: SlalomType) {
         
         stickColor = color
