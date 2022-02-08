@@ -9,17 +9,15 @@ import SpriteKit
 
 class ObstacleSpawner {
     private var parent: SKNode
-    private var obstacleModel: SKNode
     
-    var obstacles = [SKSpriteNode]()
+    var obstacles = [Obstacle]()
     
     private var currentTime: TimeInterval
     private var spawnInterval: TimeInterval = 0.3
     
     private var spawnOnLeft: Bool = true
     
-    init (obstacleModel: SKNode, parent: SKNode) {
-        self.obstacleModel = obstacleModel as! SKSpriteNode
+    init (parent: SKNode) {
         self.parent = parent
         
         currentTime = spawnInterval
@@ -30,7 +28,7 @@ class ObstacleSpawner {
         currentTime += deltaTime
         
         // Calculate interval
-        if currentTime > spawnInterval {
+        if currentTime > spawnInterval / difficultyScale {
             spawn()
             currentTime -= spawnInterval
         }
@@ -42,7 +40,7 @@ class ObstacleSpawner {
         
         if let firstObstacle = obstacles.first {
             
-            let obstacleDespawnHeight = parent.frame.maxY + obstacleModel.frame.height / 2
+            let obstacleDespawnHeight = parent.frame.maxY + firstObstacle.frame.height / 2
             
             if firstObstacle.position.y > obstacleDespawnHeight {
                 firstObstacle.removeFromParent()
@@ -52,15 +50,22 @@ class ObstacleSpawner {
     }
     
     func spawn() {
-        let newObstacle = obstacleModel.copy() as! SKSpriteNode
+        let randInt = Int.random(in: 1...100)
+        let newObstacle: Obstacle
+        if randInt > 10{
+            newObstacle = Obstacle(obstacleType: .tree)
+        } else{
+            newObstacle = Obstacle(obstacleType: .tree)
+        }
+    
         let rangeRightLimit: CGFloat
         let rangeLeftLimit: CGFloat
         
         if spawnOnLeft {
             rangeLeftLimit = parent.frame.minX
-            rangeRightLimit = -100 - obstacleModel.frame.width / 2
+            rangeRightLimit = -100 - newObstacle.frame.width / 2
         } else {
-            rangeLeftLimit = 100 + (obstacleModel.frame.width / 2)
+            rangeLeftLimit = 100 + (newObstacle.frame.width / 2)
             rangeRightLimit = parent.frame.maxX
         }
         

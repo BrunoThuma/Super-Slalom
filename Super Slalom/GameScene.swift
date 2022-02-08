@@ -47,8 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.removeFromParent()
         
         // Setup tree on the side of playable area
-        let treeNode = (self.childNode(withName: "Tree") as! SKSpriteNode)
-        obstacleSpawner = ObstacleSpawner(obstacleModel: treeNode, parent: self)
+        obstacleSpawner = ObstacleSpawner(parent: self)
         
         // Setup labels
         hub = (self.childNode(withName: "HUB") as! SKSpriteNode)
@@ -235,9 +234,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Filters possible contacts envolving the player
         // Player is either bodyA or bodyB
         if contact.bodyA.node?.name == "Player" {
+            if contact.bodyB.node?.name == "Obstacle"{
+                contactWithObstacle()
+            }
             playerContact(with: contact.bodyB.node!)
         }
         else if contact.bodyB.node?.name == "Player" {
+            if contact.bodyA.node?.name == "Obstacle"{
+                contactWithObstacle()
+            }
             playerContact(with: contact.bodyA.node!)
         }
     }
@@ -247,6 +252,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playerContact(with node: SKNode) {
         guard let slalomNode = node as! Slalom? else {
+            print("não é um slalom")
             return
         }
         
@@ -262,6 +268,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         slalomNode.wasHit = true
+    }
+    
+    func contactWithObstacle(obstacle: Obstacle) {
+        player.lives -= 1
+        // If player's position positive, we subtract
+        if obstacle.position.x < 0 {
+            player.node.position.x += 10
+        } else {
+            obstacle.position.x > 0
+            player.node.position.x += 10
+        }
+     
+        // If players's posiiton negative, we add
     }
     
     func discountPlayerLife() {
