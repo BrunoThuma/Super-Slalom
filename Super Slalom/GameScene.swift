@@ -25,6 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var tutorialOverlay: TutorialNode!
     
     private var lastUpdate = TimeInterval(0)
+    private var timeOutStart = TimeInterval(0)
     
     private var motionManager: CMMotionManager!
     private var destX: CGFloat!
@@ -152,7 +153,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         slalomSpawner.update(deltaTime: deltaTime, difficultyScale: difficultyScale)
         obstacleSpawner.update(deltaTime: deltaTime, difficultyScale: difficultyScale)
         
-        player.move(destX)
+        if currentTime - timeOutStart > 0.5 {
+            player.move(destX)
+        }
         
         distance += Float(deltaTime) * 2
         
@@ -234,16 +237,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Filters possible contacts envolving the player
         // Player is either bodyA or bodyB
         if contact.bodyA.node?.name == "Player" {
-            if contact.bodyB.node?.name == "Obstacle"{
-                contactWithObstacle()
+            if let obstacleNode = contact.bodyB.node as? Obstacle {
+                contactWithObstacle(obstacle: obstacleNode)
+            } else {
+                playerContact(with: contact.bodyB.node!)
             }
-            playerContact(with: contact.bodyB.node!)
+            //            if contact.bodyB.node?.name == "Obstacle"{
+            //                let obstacleNode: Obstacle = contact.bodyB.node as! Obstacle
+            //                contactWithObstacle(obstacle: obstacleNode)
+            //            }
         }
         else if contact.bodyB.node?.name == "Player" {
-            if contact.bodyA.node?.name == "Obstacle"{
-                contactWithObstacle()
+            if let obstacleNode = contact.bodyB.node as? Obstacle {
+                contactWithObstacle(obstacle: obstacleNode)
+            } else {
+                playerContact(with: contact.bodyA.node!)
             }
-            playerContact(with: contact.bodyA.node!)
+            //            if contact.bodyA.node?.name == "Obstacle"{
+            //                let obstacleNode: Obstacle = contact.bodyA.node as! Obstacle
+            //                contactWithObstacle(obstacle: obstacleNode)
+            //            }
         }
     }
     
@@ -271,16 +284,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func contactWithObstacle(obstacle: Obstacle) {
-        player.lives -= 1
+        print(player.node.size)
+        player.node.position.x = 0
+    
+        timeOutStart = self.lastUpdate
+//        discountPlayerLife()
         // If player's position positive, we subtract
-        if obstacle.position.x < 0 {
-            player.node.position.x += 10
-        } else {
-            obstacle.position.x > 0
-            player.node.position.x += 10
-        }
+//        if obstacle.position.x < 0 {
+//            player.node.position.x += 100
+//        } else {
+//            player.node.position.x -= 100
+//        }
      
-        // If players's posiiton negative, we add
+        // If players's position negative, we add
     }
     
     func discountPlayerLife() {
