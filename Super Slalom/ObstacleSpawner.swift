@@ -70,6 +70,7 @@ class ObstacleSpawner {
         }
         
         newObstacle.position.x = CGFloat.random(in:  rangeLeftLimit ... rangeRightLimit)
+        newObstacle.position.y = parent.frame.minY - newObstacle.size.height / 2
         
         parent.addChild(newObstacle)
         obstacles.append(newObstacle)
