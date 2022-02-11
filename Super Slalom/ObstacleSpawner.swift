@@ -52,10 +52,22 @@ class ObstacleSpawner {
     func spawn() {
         let randInt = Int.random(in: 1...100)
         let newObstacle: Obstacle
+        // 90% chance of spawning tree
         if randInt > 10{
-            newObstacle = Obstacle(obstacleType: .tree)
-        } else{
-            newObstacle = Obstacle(obstacleType: .tree)
+            if randInt > 30{
+                newObstacle = Obstacle(obstacleType: .tree1)
+            } else if randInt > 10 && randInt <= 20{
+                newObstacle = Obstacle(obstacleType: .tree2)
+            } else {
+                newObstacle = Obstacle(obstacleType: .tree3)
+            }
+        // 10% chance of spawning house
+        } else {
+            if randInt > 8{
+                newObstacle = Obstacle(obstacleType: .littleHouse)
+            } else {
+                newObstacle = Obstacle(obstacleType: .bigHouse)
+            }
         }
     
         let rangeRightLimit: CGFloat
@@ -63,9 +75,9 @@ class ObstacleSpawner {
         
         if spawnOnLeft {
             rangeLeftLimit = parent.frame.minX
-            rangeRightLimit = -100 - newObstacle.frame.width / 2
+            rangeRightLimit = -120 - newObstacle.frame.width / 2
         } else {
-            rangeLeftLimit = 100 + (newObstacle.frame.width / 2)
+            rangeLeftLimit = 120 + (newObstacle.frame.width / 2)
             rangeRightLimit = parent.frame.maxX
         }
         

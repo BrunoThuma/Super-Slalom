@@ -30,13 +30,13 @@ class Slalom: SKSpriteNode {
         self.slalomType = slalomType
         self.wasHit = wasHit
         
-        self.size = CGSize(width: 77, height: 46)
+        self.size = CGSize(width: 107, height: 85)
         
         self.zPosition = 0
         
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width,
-                                                             height: self.size.height / 2),
-                                         center: CGPoint(x: 0, y: self.frame.minY))
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width / 2,
+                                                             height: self.size.height / 3),
+                                         center: CGPoint(x: 0, y: self.frame.maxY))
 
         self.physicsBody?.isDynamic = false
 
@@ -47,7 +47,7 @@ class Slalom: SKSpriteNode {
         // Contacts with everybody
         self.physicsBody?.contactTestBitMask = UInt32.max
         
-        self.yScale = -1
+        self.yScale = 1
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,4 +69,32 @@ class Slalom: SKSpriteNode {
         let repeatAnimation = SKAction.repeatForever(frames)
         run(repeatAnimation)
     }
+    
+    func setupWasHitAnimation() {
+        var textures = [SKTexture]()
+        
+        textures.append(SKTexture(imageNamed: slalomType.fallenFlag1))
+        textures.append(SKTexture(imageNamed: slalomType.fallenFlag2))
+        textures.append(SKTexture(imageNamed: slalomType.fallenFlag3))
+        textures.append(SKTexture(imageNamed: slalomType.fallenFlag4))
+        textures.append(SKTexture(imageNamed: slalomType.fallenFlag5))
+        textures.append(SKTexture(imageNamed: slalomType.fallenFlag6))
+        textures.append(SKTexture(imageNamed: slalomType.fallenFlag7))
+        textures.append(SKTexture(imageNamed: slalomType.fallenFlag8))
+        
+        let frames = SKAction.animate(with: textures,
+                                      timePerFrame: 0.07,
+                                      resize: true,
+                                      restore: false)
+        
+       // TENTATIVA animar com o mesmo top
+        // let moveAnimation = SKAction.move(
+        
+        self.removeAllActions()
+        self.yScale = 1
+        run(frames)
+        
+        
+    }
+    
 }

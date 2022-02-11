@@ -276,6 +276,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if slalomNode.slalomType == player.stickColor {
             points += 1
             pointsLabel.text = "\(points)"
+            slalomNode.setupWasHitAnimation()
         } else {
             discountPlayerLife()
         }

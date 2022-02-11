@@ -11,7 +11,7 @@ class Obstacle: SKSpriteNode {
     var obstacleType: ObstacleType
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        self.obstacleType = .tree
+        self.obstacleType = .tree1
         
         super.init(texture: texture, color: color, size: size)
     }
@@ -33,7 +33,19 @@ class Obstacle: SKSpriteNode {
         self.zPosition = 2
         
         // TODO: implement different bodies for each case
-        self.physicsBody = SKPhysicsBody(circleOfRadius: 44.7)
+        switch obstacleType {
+        case .tree1:
+            self.physicsBody = SKPhysicsBody(circleOfRadius: 44.7)
+        case .tree2:
+            self.physicsBody = SKPhysicsBody(circleOfRadius: 44.7)
+        case .tree3:
+            self.physicsBody = SKPhysicsBody(circleOfRadius: 44.7)
+        case .littleHouse:
+            self.physicsBody = SKPhysicsBody(rectangleOf: self.frame.size)
+        case .bigHouse:
+            self.physicsBody = SKPhysicsBody(rectangleOf: self.frame.size)
+        }
+        
 
         self.physicsBody?.isDynamic = false
 
