@@ -46,7 +46,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Setup player
         let playerNode = (self.childNode(withName: "Player") as! SKSpriteNode)
         player = Player(node: playerNode, parentNode: self)
-        playerNode.removeFromParent()
         
         // Setup tree on the side of playable area
         obstacleSpawner = ObstacleSpawner(parent: self)
@@ -89,7 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         switch status {
         case .intro:
-            start()
+            verifyTouchesIntroStatus(touches: touches)
         case .playing:
             verifyTouches(touches: touches)
         case .paused:
@@ -112,7 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         switch status {
         case .intro:
-            break
+            player.move(destX)
         case .playing:
             playingStatusUpdate(currentTime: currentTime, deltaTime: deltaTime)
         case .paused:
@@ -127,8 +126,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func start() {
         status = .playing
-        addChild(player.node)
         tutorialOverlay.node.removeFromParent()
+    }
+    
+    func verifyTouchesIntroStatus(touches: Set<UITouch>) {
+        
+        for touch in touches {
+            
+            let location = touch.location(in: self)
+            let touchedNode = atPoint(location)
+            
+            switch touchedNode.name {
+            case "RedSlalomButton":
+                player.changeStickColor(color: .red)
+            case "BlueSlalomButton":
+                player.changeStickColor(color: .blue)
+            default:
+                start()
+            }
+        }
     }
     
     // MARK: Playing status methods
@@ -197,7 +213,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func reset() {
         gameOverNode.removeFromParent()
-        player.node.removeFromParent()
         
         status = .intro
         addChild(tutorialOverlay.node)
@@ -316,6 +331,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gameOver()
         }
     }
+    
 }
 
 enum GameStatus {
