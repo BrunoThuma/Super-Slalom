@@ -31,7 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var motionManager: CMMotionManager!
     private var destX: CGFloat!
     
-    var difficultyScale: CGFloat = 2.0
+    var difficultyScale: CGFloat = 2.5
     
     // MARK: Overriden methods
     
@@ -74,6 +74,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         slalomSpawner = SlalomSpawner(parent: self)
         
         setupMotionManager()
+        
+        // Setup difficulty increaser
+        setupDifficultyIncreaser()
     }
     
     // Changing to custom font
@@ -106,8 +109,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let deltaTime = currentTime - lastUpdate
         lastUpdate = currentTime
-        
-        print(deltaTime)
         
         switch status {
         case .intro:
@@ -180,6 +181,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Game Over methods
     
     func gameOver() {
+        self.removeAllActions()
+        
         status = .gameOver
         slalomSpawner.gameOver()
         addChild(gameOverNode)
@@ -211,9 +214,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         distance = 0.0
         distanceLabel.text = "\(Int(distance.rounded()))m"
+        
+        difficultyScale = 2.0
+        setupDifficultyIncreaser()
     }
     
     // MARK: Setup methods
+    
+    private func setupDifficultyIncreaser() {
+        let increaseDifficultyList = [SKAction.wait(forDuration: 1),
+                                          SKAction.run {
+            self.difficultyScale += 0.025
+        }
+        ]
+        let increaseDifficultySequence = SKAction.sequence(increaseDifficultyList)
+        let increaseDifficultyLoop = SKAction.repeatForever(increaseDifficultySequence)
+        
+        self.run(increaseDifficultyLoop)
+    }
     
     func setupMotionManager() {
         self.motionManager = CMMotionManager()

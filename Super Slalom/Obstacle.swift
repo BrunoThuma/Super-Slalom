@@ -33,7 +33,7 @@ class Obstacle: SKSpriteNode {
         self.zPosition = 2
         
         // TODO: implement different bodies for each case
-        self.physicsBody = SKPhysicsBody(circleOfRadius: 44.7)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: 22)
 
         self.physicsBody?.isDynamic = false
 
