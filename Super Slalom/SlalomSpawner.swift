@@ -22,15 +22,15 @@ class SlalomSpawner {
         currentTime += deltaTime
         
         // Calculate interval
-        if currentTime > spawnInterval / difficultyScale {
+        if currentTime > spawnInterval / (difficultyScale - 2) {
             spawn()
-            currentTime -= spawnInterval
+            currentTime = 0
         }
         
         
         // Move all slaloms
         for slalom in slaloms {
-            slalom.position.y += 100 * deltaTime * difficultyScale
+            slalom.position.y += 100 * deltaTime + difficultyScale
             
         }
         

@@ -4,7 +4,8 @@ import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    static var sharedInstance: GameScene = GameScene()
+    static var sharedInstance: GameScene!
+    weak var gameViewController: GameViewController!
     
     var status: GameStatus = .intro
     
@@ -30,7 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var motionManager: CMMotionManager!
     private var destX: CGFloat!
     
-    var difficultyScale: CGFloat = 2.0 // bandeira.wasHit -> difficulty += 0.01
+    var difficultyScale: CGFloat = 2.5
     
     // MARK: Overriden methods
     
@@ -73,6 +74,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         slalomSpawner = SlalomSpawner(parent: self)
         
         setupMotionManager()
+        
+        // Setup difficulty increaser
+        setupDifficultyIncreaser()
     }
     
     // Changing to custom font
@@ -91,7 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case .paused:
             unpauseGame()
         case .gameOver:
-            reset()
+            gameViewController.gameOverTapped()
         }
         
     }
@@ -177,6 +181,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Game Over methods
     
     func gameOver() {
+        self.removeAllActions()
+        
         status = .gameOver
         slalomSpawner.gameOver()
         addChild(gameOverNode)
@@ -186,15 +192,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         gameOverPoints.text = "\(points)"
         gameOverDistance.text = "\(Int(distance.rounded()))m"
+        
     }
     
     func reset() {
         gameOverNode.removeFromParent()
         player.node.removeFromParent()
+        
         status = .intro
         addChild(tutorialOverlay.node)
         player.reset()
+        
         slalomSpawner.reset()
+        obstacleSpawner.reset()
         
         points = 0
         pointsLabel.text = "\(points)"
@@ -204,9 +214,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         distance = 0.0
         distanceLabel.text = "\(Int(distance.rounded()))m"
+        
+        difficultyScale = 2.0
+        setupDifficultyIncreaser()
     }
     
     // MARK: Setup methods
+    
+    private func setupDifficultyIncreaser() {
+        let increaseDifficultyList = [SKAction.wait(forDuration: 1),
+                                          SKAction.run {
+            self.difficultyScale += 0.025
+        }
+        ]
+        let increaseDifficultySequence = SKAction.sequence(increaseDifficultyList)
+        let increaseDifficultyLoop = SKAction.repeatForever(increaseDifficultySequence)
+        
+        self.run(increaseDifficultyLoop)
+    }
     
     func setupMotionManager() {
         self.motionManager = CMMotionManager()
@@ -237,15 +262,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Filters possible contacts envolving the player
         // Player is either bodyA or bodyB
         if contact.bodyA.node?.name == "Player" {
+            // Filter contact with obstacle on side of track
             if let obstacleNode = contact.bodyB.node as? Obstacle {
                 contactWithObstacle(obstacle: obstacleNode)
             } else {
                 playerContact(with: contact.bodyB.node!)
             }
-            //            if contact.bodyB.node?.name == "Obstacle"{
-            //                let obstacleNode: Obstacle = contact.bodyB.node as! Obstacle
-            //                contactWithObstacle(obstacle: obstacleNode)
-            //            }
         }
         else if contact.bodyB.node?.name == "Player" {
             if let obstacleNode = contact.bodyB.node as? Obstacle {
@@ -253,10 +275,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else {
                 playerContact(with: contact.bodyA.node!)
             }
-            //            if contact.bodyA.node?.name == "Obstacle"{
-            //                let obstacleNode: Obstacle = contact.bodyA.node as! Obstacle
-            //                contactWithObstacle(obstacle: obstacleNode)
-            //            }
         }
     }
     
@@ -265,7 +283,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func playerContact(with node: SKNode) {
         guard let slalomNode = node as! Slalom? else {
-            print("não é um slalom")
             return
         }
         
@@ -285,28 +302,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func contactWithObstacle(obstacle: Obstacle) {
-        print(player.node.size)
-        player.node.position.x = 0
+        // FIXME: Why player not moving?
+        player.move(0)
     
         timeOutStart = self.lastUpdate
-//        discountPlayerLife()
-        // If player's position positive, we subtract
-//        if obstacle.position.x < 0 {
-//            player.node.position.x += 100
-//        } else {
-//            player.node.position.x -= 100
-//        }
-     
-        // If players's position negative, we add
     }
     
     func discountPlayerLife() {
         player.lives -= 1
+        livesLabel.text = "\(player.lives)"
         
         if player.lives <= 0 {
             gameOver()
-        } else {
-            livesLabel.text = "\(player.lives)"
         }
     }
 }

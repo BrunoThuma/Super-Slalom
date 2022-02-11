@@ -24,18 +24,18 @@ class ObstacleSpawner {
     }
     
     func update(deltaTime: TimeInterval, difficultyScale: CGFloat) {
-        
         currentTime += deltaTime
         
         // Calculate interval
-        if currentTime > spawnInterval / difficultyScale {
+        if currentTime > spawnInterval / (difficultyScale - 1) {
             spawn()
-            currentTime -= spawnInterval
+            currentTime = 0
         }
         
         // Move all obstacles
         for obstacle in obstacles {
-            obstacle.position.y += 100 * deltaTime * difficultyScale
+            // deltaTime * 100 ~= 0.016 * 100 ~= 1.6
+            obstacle.position.y += 100 * deltaTime + difficultyScale
         }
         
         if let firstObstacle = obstacles.first {
@@ -73,10 +73,12 @@ class ObstacleSpawner {
         let rangeRightLimit: CGFloat
         let rangeLeftLimit: CGFloat
         
+        // Spawn tree on left side of track
         if spawnOnLeft {
             rangeLeftLimit = parent.frame.minX
             rangeRightLimit = -120 - newObstacle.frame.width / 2
         } else {
+            // Spawn tree on right side of track
             rangeLeftLimit = 120 + (newObstacle.frame.width / 2)
             rangeRightLimit = parent.frame.maxX
         }

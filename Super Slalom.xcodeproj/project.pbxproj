@@ -125,14 +125,14 @@
 				5EC9941827A3C6990051C5FF /* Player.swift */,
 				5E1916F527A9CD3300B1D31A /* TutorialNode.swift */,
 				5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */,
+				5EA302D527AC132D00DA795F /* ObstacleType.swift */,
+				B109DBE927B2A506004885CB /* Obstacle.swift */,
 				5EC9941A27A3CB730051C5FF /* Slalom.swift */,
 				5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */,
 				5EC9941C27A3CBF80051C5FF /* SlalomType.swift */,
 				5EC9940B27A3A7F50051C5FF /* Main.storyboard */,
 				5EC9941027A3A7F60051C5FF /* LaunchScreen.storyboard */,
 				5EC9940E27A3A7F60051C5FF /* Assets.xcassets */,
-				5EA302D527AC132D00DA795F /* ObstacleType.swift */,
-				B109DBE927B2A506004885CB /* Obstacle.swift */,
 			);
 			path = "Super Slalom";
 			sourceTree = "<group>";
@@ -464,7 +464,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9CTDKATHP7;
+				DEVELOPMENT_TEAM = UY7S7HWX9K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Super-Slalom-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -479,7 +479,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Academy-Giovana.Super-Slalom";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.brunothuma.Super-Slalom";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -495,7 +495,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9CTDKATHP7;
+				DEVELOPMENT_TEAM = UY7S7HWX9K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Super-Slalom-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -510,7 +510,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Academy-Giovana.Super-Slalom";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.brunothuma.Super-Slalom";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
