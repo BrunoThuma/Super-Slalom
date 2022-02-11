@@ -22,7 +22,7 @@ class SlalomSpawner {
         currentTime += deltaTime
         
         // Calculate interval
-        if currentTime > spawnInterval / (difficultyScale - 2) {
+        if currentTime > spawnInterval / (difficultyScale - 1.5) {
             spawn()
             currentTime = 0
         }
@@ -48,16 +48,14 @@ class SlalomSpawner {
     
     func spawn() {
         let newSlalom: Slalom!
-        
+        isBlueSlalom = Bool.random()
         if isBlueSlalom {
             newSlalom = Slalom(slalomType: .blue)
             slaloms.append(newSlalom)
-            isBlueSlalom = false
         } else {
             newSlalom = Slalom(slalomType: .red)
             slaloms.append(newSlalom)
             
-            isBlueSlalom = true
         }
         newSlalom.position.x = CGFloat.random(in: -100...100)
         newSlalom.position.y = parent.frame.minY - (newSlalom.size.height/2)
