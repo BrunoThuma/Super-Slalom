@@ -24,6 +24,7 @@
 		5EC9941D27A3CBF80051C5FF /* SlalomType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941C27A3CBF80051C5FF /* SlalomType.swift */; };
 		5EC9941F27A3D04B0051C5FF /* SlalomSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */; };
 		B109DBEA27B2A506004885CB /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109DBE927B2A506004885CB /* Obstacle.swift */; };
+		B1258DC727BBE4B200CB9492 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1258DC627BBE4B200CB9492 /* GameKit.framework */; };
 		B144F3AF27AAC34C00CE44B8 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B144F3A127AAC34C00CE44B8 /* Rubik-MediumItalic.ttf */; };
 		B144F3B027AAC34C00CE44B8 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B144F3A227AAC34C00CE44B8 /* Rubik-Bold.ttf */; };
 		B144F3B127AAC34C00CE44B8 /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B144F3A327AAC34C00CE44B8 /* Rubik-SemiBoldItalic.ttf */; };
@@ -59,6 +60,7 @@
 		5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlalomSpawner.swift; sourceTree = "<group>"; };
 		9DEF32CC0B9C3A275C922F82 /* Pods-Super Slalom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Super Slalom.release.xcconfig"; path = "Target Support Files/Pods-Super Slalom/Pods-Super Slalom.release.xcconfig"; sourceTree = "<group>"; };
 		B109DBE927B2A506004885CB /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
+		B1258DC627BBE4B200CB9492 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		B144F3A127AAC34C00CE44B8 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
 		B144F3A227AAC34C00CE44B8 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
 		B144F3A327AAC34C00CE44B8 /* Rubik-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				410269E1FFF6B6B63C5F1625 /* Pods_Super_Slalom.framework in Frameworks */,
+				B1258DC727BBE4B200CB9492 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +175,7 @@
 		D797A6A1BB77CBCA7CE274AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1258DC627BBE4B200CB9492 /* GameKit.framework */,
 				E33EA4831F24D828E5A399C9 /* Pods_Super_Slalom.framework */,
 			);
 			name = Frameworks;
@@ -467,13 +471,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UY7S7HWX9K;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 9CTDKATHP7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Super Slalom/Super-Slalom-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -483,7 +488,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "br.brunothuma.Super-Slalom";
+				PRODUCT_BUNDLE_IDENTIFIER = "Academy-Giovana.Super-Slalom";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -498,13 +503,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = UY7S7HWX9K;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 9CTDKATHP7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Super Slalom/Super-Slalom-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -514,7 +520,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "br.brunothuma.Super-Slalom";
+				PRODUCT_BUNDLE_IDENTIFIER = "Academy-Giovana.Super-Slalom";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
