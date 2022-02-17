@@ -37,7 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
-        view.showsPhysics = true
+        view.showsPhysics = false
         
         physicsWorld.contactDelegate = self
         
@@ -53,8 +53,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Setup labels
         hub = (self.childNode(withName: "HUB") as! SKSpriteNode)
         pointsLabel = (hub.childNode(withName: "PointsLabel") as! SKLabelNode)
+        pointsLabel.fontName = "Rubik-Bold"
         livesLabel = (hub.childNode(withName: "LivesLabel") as! SKLabelNode)
+        livesLabel.fontName = "Rubik-Bold"
         distanceLabel = (hub.childNode(withName: "DistanceLabel") as! SKLabelNode)
+        distanceLabel.fontName = "Rubik-Bold"
         
         let introNode = (childNode(withName: "Tutorial") as! SKSpriteNode)
         tutorialOverlay = TutorialNode(node: introNode)
@@ -76,12 +79,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Setup difficulty increaser
         setupDifficultyIncreaser()
-    }
-    
-    // Changing to custom font
-    
-    func loadFonts() {
-        livesLabel.fontName = "Rubik-Black"
+        
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -203,8 +202,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         slalomSpawner.gameOver()
         addChild(gameOverNode)
         
-        let gameOverPoints = (gameOverNode.childNode(withName: "GameOverPointsLabel") as! SKLabelNode)
-        let gameOverDistance = (gameOverNode.childNode(withName: "GameOverDistanceLabel") as! SKLabelNode)
+        
+        let gameOverTitle = gameOverNode.childNode(withName: "GameOverLabel") as! SKLabelNode
+        let gameOverPoints = gameOverNode.childNode(withName: "GameOverPointsLabel") as! SKLabelNode
+        let gameOverDistance = gameOverNode.childNode(withName: "GameOverDistanceLabel") as! SKLabelNode
+        
+        gameOverTitle.fontName = "Rubik-SemiBold"
+        gameOverTitle.fontSize = 34
+        
+        gameOverPoints.fontName = "Rubik-SemiBold"
+        gameOverPoints.fontSize = 58
+        
+        gameOverDistance.fontName = "Rubik-SemiBold"
+        gameOverDistance.fontSize = 58
         
         gameOverPoints.text = "\(points)"
         gameOverDistance.text = "\(Int(distance.rounded()))m"
