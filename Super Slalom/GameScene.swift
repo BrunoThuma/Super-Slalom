@@ -17,6 +17,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var distance: Float = 0.0
     
     private var hub: SKSpriteNode!
+    private var pinkButton: SKSpriteNode!
+    private var blueButton: SKSpriteNode!
     private var pointsLabel: SKLabelNode!
     private var livesLabel: SKLabelNode!
     private var distanceLabel: SKLabelNode!
@@ -37,7 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
-        view.showsPhysics = true
+        view.showsPhysics = false
         
         physicsWorld.contactDelegate = self
         
@@ -53,8 +55,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Setup labels
         hub = (self.childNode(withName: "HUB") as! SKSpriteNode)
         pointsLabel = (hub.childNode(withName: "PointsLabel") as! SKLabelNode)
+        pointsLabel.fontName = "Rubik-Bold"
         livesLabel = (hub.childNode(withName: "LivesLabel") as! SKLabelNode)
+        livesLabel.fontName = "Rubik-Bold"
         distanceLabel = (hub.childNode(withName: "DistanceLabel") as! SKLabelNode)
+        distanceLabel.fontName = "Rubik-Bold"
         
         let introNode = (childNode(withName: "Tutorial") as! SKSpriteNode)
         tutorialOverlay = TutorialNode(node: introNode)
@@ -66,6 +71,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pausedLabel = (childNode(withName: "PausedLabel") as! SKLabelNode)
         pausedLabel.removeFromParent()
         
+        pinkButton = (self.childNode(withName: "RedSlalomButton") as! SKSpriteNode)
+        blueButton = (self.childNode(withName: "BlueSlalomButton") as! SKSpriteNode)
+        
         // Setup tutorial overlay animation
         tutorialOverlay.setupAnimation()
         
@@ -76,12 +84,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Setup difficulty increaser
         setupDifficultyIncreaser()
-    }
-    
-    // Changing to custom font
-    
-    func loadFonts() {
-        livesLabel.fontName = "Rubik-Black"
+        
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -136,11 +140,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             let touchedNode = atPoint(location)
             
-            switch touchedNode.name {
-            case "RedSlalomButton":
+            switch touchedNode {
+            case pinkButton:
                 player.changeStickColor(color: .red)
-            case "BlueSlalomButton":
+                pinkButton.run(
+                    SKAction.animate(
+                        with: [
+                            SKTexture(imageNamed: "pinkbuttonpressed"),
+                            SKTexture(imageNamed: "pinkbuttonnormal")],
+                        timePerFrame: 0.2))
+            case blueButton:
                 player.changeStickColor(color: .blue)
+                blueButton.run(
+                    SKAction.animate(
+                        with: [
+                            SKTexture(imageNamed: "bluebuttonpressed"),
+                            SKTexture(imageNamed: "bluebuttonnormal")],
+                        timePerFrame: 0.2))
             default:
                 start()
             }
@@ -177,7 +193,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.move(destX)
         }
         
-        distance += Float(deltaTime) * 2
+        distance += Float(deltaTime) * Float(difficultyScale - 0.5)
         
         distanceLabel.text = "\(Int(distance.rounded()))m"
     }
@@ -203,8 +219,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         slalomSpawner.gameOver()
         addChild(gameOverNode)
         
-        let gameOverPoints = (gameOverNode.childNode(withName: "GameOverPointsLabel") as! SKLabelNode)
-        let gameOverDistance = (gameOverNode.childNode(withName: "GameOverDistanceLabel") as! SKLabelNode)
+        
+        let gameOverTitle = gameOverNode.childNode(withName: "GameOverLabel") as! SKLabelNode
+        let gameOverPoints = gameOverNode.childNode(withName: "GameOverPointsLabel") as! SKLabelNode
+        let gameOverDistance = gameOverNode.childNode(withName: "GameOverDistanceLabel") as! SKLabelNode
+        
+        gameOverTitle.fontName = "Rubik-SemiBold"
+        gameOverTitle.fontSize = 34
+        
+        gameOverPoints.fontName = "Rubik-SemiBold"
+        gameOverPoints.fontSize = 58
+        
+        gameOverDistance.fontName = "Rubik-SemiBold"
+        gameOverDistance.fontSize = 58
         
         gameOverPoints.text = "\(points)"
         gameOverDistance.text = "\(Int(distance.rounded()))m"
