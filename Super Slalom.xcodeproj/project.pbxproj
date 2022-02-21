@@ -38,6 +38,12 @@
 		B144F3BA27AAC34C00CE44B8 /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B144F3AC27AAC34C00CE44B8 /* Rubik-ExtraBold.ttf */; };
 		B144F3BB27AAC34C00CE44B8 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B144F3AD27AAC34C00CE44B8 /* Rubik-Regular.ttf */; };
 		B144F3BC27AAC34C00CE44B8 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B144F3AE27AAC34C00CE44B8 /* Rubik-BoldItalic.ttf */; };
+		B18722A927C3D096004635EE /* hit_right_flag.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B18722A327C3D096004635EE /* hit_right_flag.mp3 */; };
+		B18722AA27C3D096004635EE /* hit_wrong_flag.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B18722A427C3D096004635EE /* hit_wrong_flag.mp3 */; };
+		B18722AB27C3D096004635EE /* life_collect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B18722A527C3D096004635EE /* life_collect.mp3 */; };
+		B18722AC27C3D096004635EE /* hit_tree.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B18722A627C3D096004635EE /* hit_tree.mp3 */; };
+		B18722AD27C3D096004635EE /* skiing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B18722A727C3D096004635EE /* skiing.mp3 */; };
+		B18722AE27C3D096004635EE /* background_song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B18722A827C3D096004635EE /* background_song.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +79,12 @@
 		B144F3AC27AAC34C00CE44B8 /* Rubik-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-ExtraBold.ttf"; sourceTree = "<group>"; };
 		B144F3AD27AAC34C00CE44B8 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		B144F3AE27AAC34C00CE44B8 /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
+		B18722A327C3D096004635EE /* hit_right_flag.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_right_flag.mp3; sourceTree = "<group>"; };
+		B18722A427C3D096004635EE /* hit_wrong_flag.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_wrong_flag.mp3; sourceTree = "<group>"; };
+		B18722A527C3D096004635EE /* life_collect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = life_collect.mp3; sourceTree = "<group>"; };
+		B18722A627C3D096004635EE /* hit_tree.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_tree.mp3; sourceTree = "<group>"; };
+		B18722A727C3D096004635EE /* skiing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = skiing.mp3; sourceTree = "<group>"; };
+		B18722A827C3D096004635EE /* background_song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_song.mp3; sourceTree = "<group>"; };
 		C70D94B58FF83780365CF906 /* Pods-Super Slalom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Super Slalom.debug.xcconfig"; path = "Target Support Files/Pods-Super Slalom/Pods-Super Slalom.debug.xcconfig"; sourceTree = "<group>"; };
 		E33EA4831F24D828E5A399C9 /* Pods_Super_Slalom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Super_Slalom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -102,6 +114,7 @@
 		5EC993F527A3A7F40051C5FF = {
 			isa = PBXGroup;
 			children = (
+				B18722A127C3D084004635EE /* Sounds */,
 				5EC9940027A3A7F50051C5FF /* Super Slalom */,
 				5EC993FF27A3A7F50051C5FF /* Products */,
 				190FF8A494D57775CC2C57FC /* Pods */,
@@ -167,6 +180,27 @@
 				B144F3AE27AAC34C00CE44B8 /* Rubik-BoldItalic.ttf */,
 			);
 			path = RubikFont;
+			sourceTree = "<group>";
+		};
+		B18722A127C3D084004635EE /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				B18722A227C3D095004635EE /* Sons */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
+		B18722A227C3D095004635EE /* Sons */ = {
+			isa = PBXGroup;
+			children = (
+				B18722A327C3D096004635EE /* hit_right_flag.mp3 */,
+				B18722A427C3D096004635EE /* hit_wrong_flag.mp3 */,
+				B18722A527C3D096004635EE /* life_collect.mp3 */,
+				B18722A627C3D096004635EE /* hit_tree.mp3 */,
+				B18722A727C3D096004635EE /* skiing.mp3 */,
+				B18722A827C3D096004635EE /* background_song.mp3 */,
+			);
+			path = Sons;
 			sourceTree = "<group>";
 		};
 		D797A6A1BB77CBCA7CE274AB /* Frameworks */ = {
@@ -245,15 +279,21 @@
 				B144F3AF27AAC34C00CE44B8 /* Rubik-MediumItalic.ttf in Resources */,
 				B144F3B927AAC34C00CE44B8 /* Rubik-BlackItalic.ttf in Resources */,
 				5EC9940F27A3A7F60051C5FF /* Assets.xcassets in Resources */,
+				B18722AE27C3D096004635EE /* background_song.mp3 in Resources */,
 				B144F3BC27AAC34C00CE44B8 /* Rubik-BoldItalic.ttf in Resources */,
 				B144F3B227AAC34C00CE44B8 /* Rubik-Light.ttf in Resources */,
 				B144F3B727AAC34C00CE44B8 /* Rubik-LightItalic.ttf in Resources */,
+				B18722AA27C3D096004635EE /* hit_wrong_flag.mp3 in Resources */,
+				B18722AD27C3D096004635EE /* skiing.mp3 in Resources */,
 				B144F3B327AAC34C00CE44B8 /* Rubik-Medium.ttf in Resources */,
 				B144F3B627AAC34C00CE44B8 /* Rubik-Italic.ttf in Resources */,
+				B18722A927C3D096004635EE /* hit_right_flag.mp3 in Resources */,
+				B18722AC27C3D096004635EE /* hit_tree.mp3 in Resources */,
 				5EC9941227A3A7F60051C5FF /* LaunchScreen.storyboard in Resources */,
 				B144F3B427AAC34C00CE44B8 /* Rubik-ExtraBoldItalic.ttf in Resources */,
 				B144F3BB27AAC34C00CE44B8 /* Rubik-Regular.ttf in Resources */,
 				B144F3B127AAC34C00CE44B8 /* Rubik-SemiBoldItalic.ttf in Resources */,
+				B18722AB27C3D096004635EE /* life_collect.mp3 in Resources */,
 				B144F3BA27AAC34C00CE44B8 /* Rubik-ExtraBold.ttf in Resources */,
 				B144F3B827AAC34C00CE44B8 /* Rubik-SemiBold.ttf in Resources */,
 			);
