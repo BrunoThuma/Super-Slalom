@@ -17,6 +17,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var distance: Float = 0.0
     
     private var hub: SKSpriteNode!
+    private var pinkButton: SKSpriteNode!
+    private var blueButton: SKSpriteNode!
     private var pointsLabel: SKLabelNode!
     private var livesLabel: SKLabelNode!
     private var distanceLabel: SKLabelNode!
@@ -68,6 +70,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         pausedLabel = (childNode(withName: "PausedLabel") as! SKLabelNode)
         pausedLabel.removeFromParent()
+        
+        pinkButton = (self.childNode(withName: "RedSlalomButton") as! SKSpriteNode)
+        blueButton = (self.childNode(withName: "BlueSlalomButton") as! SKSpriteNode)
         
         // Setup tutorial overlay animation
         tutorialOverlay.setupAnimation()
@@ -135,11 +140,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             let touchedNode = atPoint(location)
             
-            switch touchedNode.name {
-            case "RedSlalomButton":
+            switch touchedNode {
+            case pinkButton:
                 player.changeStickColor(color: .red)
-            case "BlueSlalomButton":
+                pinkButton.run(
+                    SKAction.animate(
+                        with: [
+                            SKTexture(imageNamed: "pinkbuttonpressed"),
+                            SKTexture(imageNamed: "pinkbuttonnormal")],
+                        timePerFrame: 0.2))
+            case blueButton:
                 player.changeStickColor(color: .blue)
+                blueButton.run(
+                    SKAction.animate(
+                        with: [
+                            SKTexture(imageNamed: "bluebuttonpressed"),
+                            SKTexture(imageNamed: "bluebuttonnormal")],
+                        timePerFrame: 0.2))
             default:
                 start()
             }
@@ -176,7 +193,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             player.move(destX)
         }
         
-        distance += Float(deltaTime) * 2
+        distance += Float(deltaTime) * Float(difficultyScale - 0.5)
         
         distanceLabel.text = "\(Int(distance.rounded()))m"
     }
