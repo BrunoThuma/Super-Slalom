@@ -1,6 +1,7 @@
 import UIKit
 import GoogleMobileAds
 import FBSDKCoreKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -11,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Firebase configuration
+        FirebaseApp.configure()
         
         // Facebook ads configuration
         Settings.shared.isAdvertiserTrackingEnabled = true

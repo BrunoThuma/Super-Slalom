@@ -39,6 +39,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
+        let errorList = [1]
+        errorList[2]
+        
         view.showsPhysics = false
         
         physicsWorld.contactDelegate = self
