@@ -33,11 +33,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var motionManager: CMMotionManager!
     private var destX: CGFloat!
     
+    private var skiingSound = SKAction.playSoundFileNamed("skiing.mp3", waitForCompletion: false)
+    private var hitTreeSound = SKAction.playSoundFileNamed("hit_tree.mp3", waitForCompletion: false)
+    private var hitRightFlagSound = SKAction.playSoundFileNamed("hit_right_flag.mp3", waitForCompletion: false)
+    private var hitWrongFlagSound = SKAction.playSoundFileNamed("hit_wrong_flag.mp3", waitForCompletion: false)
+    private var lifeCollectSound = SKAction.playSoundFileNamed("life_collect.mp3", waitForCompletion: false)
+    
     var difficultyScale: CGFloat = 2.5
     
     // MARK: Overriden methods
     
     override func didMove(to view: SKView) {
+        
+        let backgroundSong = SKAudioNode(fileNamed: "background_song.mp3")
+         self.addChild(backgroundSong)
         
         view.showsPhysics = false
         
@@ -175,8 +184,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             switch touchedNode.name {
             case "RedSlalomButton":
                 player.changeStickColor(color: .red)
+                run(skiingSound)
             case "BlueSlalomButton":
                 player.changeStickColor(color: .blue)
+                run(skiingSound)
             default:
                 break
             }
@@ -335,9 +346,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if slalomNode.slalomType == player.stickColor {
             points += 1
             pointsLabel.text = "\(points)"
+            run(hitRightFlagSound)
             slalomNode.setupWasHitAnimation()
         } else {
             discountPlayerLife()
+            run(hitWrongFlagSound)
         }
         
         slalomNode.wasHit = true
@@ -346,6 +359,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func contactWithObstacle(obstacle: Obstacle) {
         // FIXME: Why player not moving?
         player.move(0)
+        run(hitTreeSound)
     
         timeOutStart = self.lastUpdate
     }
