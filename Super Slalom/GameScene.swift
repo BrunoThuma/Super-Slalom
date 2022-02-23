@@ -14,15 +14,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var obstacleSpawner: ObstacleSpawner!
     
     private var points: Int = 0
-    private var distance: Float = 0.0
+    private var distance: Float = 0
     
-    private var hub: SKSpriteNode!
+    private var hub: SKNode!
     private var pinkButton: SKSpriteNode!
     private var blueButton: SKSpriteNode!
     private var pointsLabel: SKLabelNode!
     private var livesLabel: SKLabelNode!
     private var distanceLabel: SKLabelNode!
     private var pausedLabel: SKLabelNode!
+    private var caraDeslizante: SKSpriteNode!
+    private var distanceHub: SKSpriteNode!
+    private var didDeslizouDezena = false
+    private var didDeslizouCentena = false
     
     private var gameOverNode: SKNode!
     private var tutorialOverlay: TutorialNode!
@@ -62,13 +66,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         obstacleSpawner = ObstacleSpawner(parent: self)
         
         // Setup labels
-        hub = (self.childNode(withName: "HUB") as! SKSpriteNode)
+        hub = self.childNode(withName: "HUB")
         pointsLabel = (hub.childNode(withName: "PointsLabel") as! SKLabelNode)
         pointsLabel.fontName = "Rubik-Bold"
         livesLabel = (hub.childNode(withName: "LivesLabel") as! SKLabelNode)
         livesLabel.fontName = "Rubik-Bold"
         distanceLabel = (hub.childNode(withName: "DistanceLabel") as! SKLabelNode)
         distanceLabel.fontName = "Rubik-Bold"
+        distanceHub = (hub.childNode(withName: "DistanceHub") as! SKSpriteNode)
+        caraDeslizante = (hub.childNode(withName: "CaraDeslizante") as! SKSpriteNode)
         
         let introNode = (childNode(withName: "Tutorial") as! SKSpriteNode)
         tutorialOverlay = TutorialNode(node: introNode)
@@ -157,7 +163,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         with: [
                             SKTexture(imageNamed: "pinkbuttonpressed"),
                             SKTexture(imageNamed: "pinkbuttonnormal")],
-                        timePerFrame: 0.2))
+                        timePerFrame: 0.5))
             case blueButton:
                 player.changeStickColor(color: .blue)
                 blueButton.run(
@@ -165,7 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         with: [
                             SKTexture(imageNamed: "bluebuttonpressed"),
                             SKTexture(imageNamed: "bluebuttonnormal")],
-                        timePerFrame: 0.2))
+                        timePerFrame: 0.5))
             default:
                 start()
             }
@@ -207,6 +213,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         distance += Float(deltaTime) * Float(difficultyScale - 0.5)
         
         distanceLabel.text = "\(Int(distance.rounded()))m"
+        if distance > 9 && !didDeslizouDezena {
+            distanceHub.position.x -= caraDeslizante.size.width * 0.12
+            distanceLabel.position.x -= caraDeslizante.size.width  * 0.10
+            didDeslizouDezena = true
+            hub.position.x = self.frame.midX
+        }
+        if distance > 99 && !didDeslizouCentena {
+            distanceHub.position.x -= caraDeslizante.size.width / 2
+            distanceLabel.position.x -= caraDeslizante.size.width  * 3 / 7
+            didDeslizouCentena = true
+            hub.position.x = self.frame.midX
+        }
     }
     
     // MARK: Pause methods
@@ -270,6 +288,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         difficultyScale = 2.0
         setupDifficultyIncreaser()
+        
+        distanceHub.position.x = -97
+        distanceLabel.position.x = -97
+
     }
     
     // MARK: Setup methods
