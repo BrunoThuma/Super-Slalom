@@ -217,13 +217,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             distanceHub.position.x -= caraDeslizante.size.width * 0.12
             distanceLabel.position.x -= caraDeslizante.size.width  * 0.10
             didDeslizouDezena = true
-            hub.position.x = self.frame.midX
+            hub.position.x += caraDeslizante.size.width * 0.12
         }
         if distance > 99 && !didDeslizouCentena {
             distanceHub.position.x -= caraDeslizante.size.width / 2
             distanceLabel.position.x -= caraDeslizante.size.width  * 3 / 7
             didDeslizouCentena = true
-            hub.position.x = self.frame.midX
+            hub.position.x += (caraDeslizante.size.width / 2) - 0.012
+
         }
     }
     
