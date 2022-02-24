@@ -12,6 +12,7 @@
 		5E1916F827AA329E00B1D31A /* ObstacleSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */; };
 		5E84BA2F27BA91CB004213B1 /* Super-Slalom-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E84BA2E27BA91CB004213B1 /* Super-Slalom-Info.plist */; };
 		5EA302D627AC132D00DA795F /* ObstacleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA302D527AC132D00DA795F /* ObstacleType.swift */; };
+		5EBAC2C527C65F2200310D0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EBAC2C427C65F2200310D0F /* GoogleService-Info.plist */; };
 		5EC9940227A3A7F50051C5FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9940127A3A7F50051C5FF /* AppDelegate.swift */; };
 		5EC9940427A3A7F50051C5FF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9940327A3A7F50051C5FF /* GameScene.sks */; };
 		5EC9940827A3A7F50051C5FF /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9940727A3A7F50051C5FF /* GameScene.swift */; };
@@ -52,6 +53,7 @@
 		5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleSpawner.swift; sourceTree = "<group>"; };
 		5E84BA2E27BA91CB004213B1 /* Super-Slalom-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Super-Slalom-Info.plist"; sourceTree = "<group>"; };
 		5EA302D527AC132D00DA795F /* ObstacleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleType.swift; sourceTree = "<group>"; };
+		5EBAC2C427C65F2200310D0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5EC993FE27A3A7F50051C5FF /* Super Slalom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Super Slalom.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC9940127A3A7F50051C5FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EC9940327A3A7F50051C5FF /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				5EC9941027A3A7F60051C5FF /* LaunchScreen.storyboard */,
 				5EC9940E27A3A7F60051C5FF /* Assets.xcassets */,
 				5E84BA2E27BA91CB004213B1 /* Super-Slalom-Info.plist */,
+				5EBAC2C427C65F2200310D0F /* GoogleService-Info.plist */,
 			);
 			path = "Super Slalom";
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				5EC993FB27A3A7F50051C5FF /* Frameworks */,
 				5EC993FC27A3A7F50051C5FF /* Resources */,
 				2C7FD789A600D51F7F5660EA /* [CP] Embed Pods Frameworks */,
+				5EBAC2C627C661B400310D0F /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -288,6 +292,7 @@
 				B144F3B727AAC34C00CE44B8 /* Rubik-LightItalic.ttf in Resources */,
 				B18722AA27C3D096004635EE /* hit_wrong_flag.mp3 in Resources */,
 				B18722AD27C3D096004635EE /* skiing.mp3 in Resources */,
+				5EBAC2C527C65F2200310D0F /* GoogleService-Info.plist in Resources */,
 				B144F3B327AAC34C00CE44B8 /* Rubik-Medium.ttf in Resources */,
 				B144F3B627AAC34C00CE44B8 /* Rubik-Italic.ttf in Resources */,
 				B18722A927C3D096004635EE /* hit_right_flag.mp3 in Resources */,
@@ -344,6 +349,26 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Super Slalom/Pods-Super Slalom-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		5EBAC2C627C661B400310D0F /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -512,13 +537,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 9CTDKATHP7;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = UY7S7HWX9K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Super Slalom/Super-Slalom-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -546,13 +571,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = 9CTDKATHP7;
+				DEVELOPMENT_TEAM = UY7S7HWX9K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Super Slalom/Super-Slalom-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
