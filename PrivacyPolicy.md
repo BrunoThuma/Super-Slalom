@@ -1,6 +1,6 @@
 **Privacy Policy**
 
-Bruno Thuma, Giovana Garcia built the Super Slalom app as a Free app. This SERVICE is provided by Bruno Thuma, Giovana Garcia at no cost and is intended for use as is.
+Bruno Thuma and Giovana Garcia built the Super Slalom app as a Free app. This SERVICE is provided by Bruno Thuma and Giovana Garcia at no cost and is intended for use as is.
 
 This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
 
