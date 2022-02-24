@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>771347758413-cec0amr0enneqiv1f2v4cdmioa6e5tf0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.771347758413-cec0amr0enneqiv1f2v4cdmioa6e5tf0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCouwd5uw4ee9mNg7vZiJgMhCEcjdeBncY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>771347758413</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Academy-Giovana.Super-Slalom</string>
+	<key>PROJECT_ID</key>
+	<string>super-salom</string>
+	<key>STORAGE_BUCKET</key>
+	<string>super-salom.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:771347758413:ios:d1f592e7d8888720d88b04</string>
+</dict>
+</plist>

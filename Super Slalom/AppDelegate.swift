@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 import GoogleMobileAds
 import FBSDKCoreKit
 
@@ -10,6 +11,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Setup firebase
+        FirebaseApp.configure()
         
         
         // Facebook ads configuration
