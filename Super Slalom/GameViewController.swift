@@ -88,7 +88,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         scene.reset()
     }
     
-    func gameOverTapped() {
+    func restartGame() {
         gamesUntilAd -= 1
         
         if gamesUntilAd <= 0 {

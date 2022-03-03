@@ -109,7 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case .paused:
             unpauseGame()
         case .gameOver:
-            gameViewController.gameOverTapped()
+            verifyTouchesGameOverStatus(touches: touches)
         }
         
     }
@@ -143,6 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         status = .playing
         
         // Setup difficulty increaser
+        difficultyScale = 2.5
         setupDifficultyIncreaser()
         
         tutorialOverlay.node.removeFromParent()
@@ -291,12 +292,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         distance = 0.0
         distanceLabel.text = "\(Int(distance.rounded()))m"
         
-        difficultyScale = 2.5
-        setupDifficultyIncreaser()
-        
         distanceHub.position.x = -97
         distanceLabel.position.x = -97
 
+    }
+    
+    func verifyTouchesGameOverStatus(touches: Set<UITouch>) {
+        for touch in touches {
+            
+            let location = touch.location(in: self)
+            let touchedNode = atPoint(location)
+            
+            switch touchedNode.name {
+            case "GameOverRestartButton":
+                gameViewController.restartGame()
+            default:
+                break
+            }
+        }
     }
     
     // MARK: Setup methods
