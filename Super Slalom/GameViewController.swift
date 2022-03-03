@@ -9,11 +9,11 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import GoogleMobileAds
+import FirebaseCrashlytics
 
 class GameViewController: UIViewController, GADFullScreenContentDelegate {
     
     var scene: GameScene!
-    var bannerView: GADBannerView!
     private var interstitial: GADInterstitialAd?
     private var gamesUntilAd: Int = 3
     
@@ -33,8 +33,13 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
             
             view.ignoresSiblingOrder = true
             
-            view.showsFPS = false
-            view.showsNodeCount = false
+            #if DEBUG
+                view.showsFPS = true
+                view.showsNodeCount = true
+            #elseif RELEASE
+                view.showsFPS = false
+                view.showsNodeCount = false
+            #endif
         }
         
         requestInterstitialAd()
@@ -43,8 +48,17 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     // Codigo de teste: ca-app-pub-3940256099942544/4411468910
     // Codigo real insterticial: ca-app-pub-2446678848694050/1742674548
     func requestInterstitialAd() {
+        
+        let interstitialToken: String
+        
+        #if DEBUG
+            interstitialToken = "ca-app-pub-3940256099942544/4411468910"
+        #elseif RELEASE
+            interstitialToken = "ca-app-pub-2446678848694050/1742674548"
+        #endif
+        
         let request = GADRequest()
-        GADInterstitialAd.load(withAdUnitID:"ca-app-pub-2446678848694050/1742674548",
+        GADInterstitialAd.load(withAdUnitID: interstitialToken,
                                request: request,
                                completionHandler: { [self] ad, error in
             if let error = error {
@@ -107,41 +121,5 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     
     override var prefersStatusBarHidden: Bool {
         return true
-    }
-}
-
-extension GameViewController {
-    func createAdBanner() {
-        bannerView = GADBannerView(adSize: GADAdSize(size: CGSize(width: 320, height: 50), flags: 0))
-        
-        addBannerViewToView(bannerView)
-        
-        // FIXME: Use real ad ID
-        // This adUnitID is for test porpuses
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.rootViewController = self
-        
-        bannerView.load(GADRequest())
-    }
-    
-    func addBannerViewToView(_ bannerView: GADBannerView) {
-        bannerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(bannerView)
-        view.addConstraints(
-            [NSLayoutConstraint(item: bannerView,
-                                attribute: .bottom,
-                                relatedBy: .equal,
-                                toItem: view.safeAreaLayoutGuide,
-                                attribute: .top,
-                                multiplier: 1,
-                                constant: 0),
-             NSLayoutConstraint(item: bannerView,
-                                attribute: .centerX,
-                                relatedBy: .equal,
-                                toItem: view,
-                                attribute: .centerX,
-                                multiplier: 1,
-                                constant: 0)
-            ])
     }
 }

@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         
         let backgroundSong = SKAudioNode(fileNamed: "background_song.mp3")
-         self.addChild(backgroundSong)
+        self.addChild(backgroundSong)
         
         view.showsPhysics = false
         
@@ -81,6 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Setup game over and remove from screen for now
         gameOverNode = self.childNode(withName: "GameOver")
+        gameOverNode.position = CGPoint(x: 0, y: 0)
         gameOverNode.removeFromParent()
         
         pausedLabel = (childNode(withName: "PausedLabel") as! SKLabelNode)
@@ -96,11 +97,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         slalomSpawner = SlalomSpawner(parent: self)
         
         setupMotionManager()
-        
-        // Setup difficulty increaser
-        setupDifficultyIncreaser()
-        
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -109,7 +105,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case .intro:
             verifyTouchesIntroStatus(touches: touches)
         case .playing:
-            verifyTouches(touches: touches)
+            verifyTouchesPlayingStatus(touches: touches)
         case .paused:
             unpauseGame()
         case .gameOver:
@@ -145,6 +141,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func start() {
         status = .playing
+        
+        // Setup difficulty increaser
+        setupDifficultyIncreaser()
+        
         tutorialOverlay.node.removeFromParent()
     }
     
@@ -180,7 +180,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Playing status methods
     
-    func verifyTouches(touches: Set<UITouch>) {
+    func verifyTouchesPlayingStatus(touches: Set<UITouch>) {
         
         for touch in touches {
             
@@ -245,23 +245,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func gameOver() {
         self.removeAllActions()
         
+        hub.removeFromParent()
+        pinkButton.removeFromParent()
+        blueButton.removeFromParent()
+        
         status = .gameOver
         slalomSpawner.gameOver()
         addChild(gameOverNode)
         
         
-        let gameOverTitle = gameOverNode.childNode(withName: "GameOverLabel") as! SKLabelNode
         let gameOverPoints = gameOverNode.childNode(withName: "GameOverPointsLabel") as! SKLabelNode
         let gameOverDistance = gameOverNode.childNode(withName: "GameOverDistanceLabel") as! SKLabelNode
         
-        gameOverTitle.fontName = "Rubik-SemiBold"
-        gameOverTitle.fontSize = 34
-        
         gameOverPoints.fontName = "Rubik-SemiBold"
-        gameOverPoints.fontSize = 58
+        gameOverPoints.fontSize = 26
         
         gameOverDistance.fontName = "Rubik-SemiBold"
-        gameOverDistance.fontSize = 58
+        gameOverDistance.fontSize = 26
         
         gameOverPoints.text = "\(points)"
         gameOverDistance.text = "\(Int(distance.rounded()))m"
@@ -269,6 +269,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func reset() {
+        addChild(hub)
+        addChild(pinkButton)
+        addChild(blueButton)
+        
         gameOverNode.removeFromParent()
         
         status = .intro
@@ -287,7 +291,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         distance = 0.0
         distanceLabel.text = "\(Int(distance.rounded()))m"
         
-        difficultyScale = 2.0
+        difficultyScale = 2.5
         setupDifficultyIncreaser()
         
         distanceHub.position.x = -97
