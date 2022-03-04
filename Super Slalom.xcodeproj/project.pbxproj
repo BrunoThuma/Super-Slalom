@@ -10,7 +10,8 @@
 		410269E1FFF6B6B63C5F1625 /* Pods_Super_Slalom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E33EA4831F24D828E5A399C9 /* Pods_Super_Slalom.framework */; };
 		5E1916F627A9CD3300B1D31A /* TutorialNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1916F527A9CD3300B1D31A /* TutorialNode.swift */; };
 		5E1916F827AA329E00B1D31A /* ObstacleSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */; };
-		5E84BA2F27BA91CB004213B1 /* Super-Slalom-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E84BA2E27BA91CB004213B1 /* Super-Slalom-Info.plist */; };
+		5E3C126827D0E914002B866D /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C126727D0E914002B866D /* MainMenuViewController.swift */; };
+		5E3C126C27D2452B002B866D /* MainMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C126B27D2452B002B866D /* MainMenuDelegate.swift */; };
 		5EA302D627AC132D00DA795F /* ObstacleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA302D527AC132D00DA795F /* ObstacleType.swift */; };
 		5EBAC2C527C65F2200310D0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EBAC2C427C65F2200310D0F /* GoogleService-Info.plist */; };
 		5EC9940227A3A7F50051C5FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9940127A3A7F50051C5FF /* AppDelegate.swift */; };
@@ -24,7 +25,6 @@
 		5EC9941B27A3CB730051C5FF /* Slalom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941A27A3CB730051C5FF /* Slalom.swift */; };
 		5EC9941D27A3CBF80051C5FF /* SlalomType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941C27A3CBF80051C5FF /* SlalomType.swift */; };
 		5EC9941F27A3D04B0051C5FF /* SlalomSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */; };
-		5EF2972327D07604007ED7F1 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2972227D07604007ED7F1 /* GameOverScene.swift */; };
 		B109DBEA27B2A506004885CB /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B109DBE927B2A506004885CB /* Obstacle.swift */; };
 		B1258DC727BBE4B200CB9492 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1258DC627BBE4B200CB9492 /* GameKit.framework */; };
 		B144F3AF27AAC34C00CE44B8 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B144F3A127AAC34C00CE44B8 /* Rubik-MediumItalic.ttf */; };
@@ -52,6 +52,8 @@
 /* Begin PBXFileReference section */
 		5E1916F527A9CD3300B1D31A /* TutorialNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialNode.swift; sourceTree = "<group>"; };
 		5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleSpawner.swift; sourceTree = "<group>"; };
+		5E3C126727D0E914002B866D /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		5E3C126B27D2452B002B866D /* MainMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuDelegate.swift; sourceTree = "<group>"; };
 		5E84BA2E27BA91CB004213B1 /* Super-Slalom-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Super-Slalom-Info.plist"; sourceTree = "<group>"; };
 		5EA302D527AC132D00DA795F /* ObstacleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleType.swift; sourceTree = "<group>"; };
 		5EBAC2C427C65F2200310D0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -67,7 +69,6 @@
 		5EC9941A27A3CB730051C5FF /* Slalom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slalom.swift; sourceTree = "<group>"; };
 		5EC9941C27A3CBF80051C5FF /* SlalomType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlalomType.swift; sourceTree = "<group>"; };
 		5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlalomSpawner.swift; sourceTree = "<group>"; };
-		5EF2972227D07604007ED7F1 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		9DEF32CC0B9C3A275C922F82 /* Pods-Super Slalom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Super Slalom.release.xcconfig"; path = "Target Support Files/Pods-Super Slalom/Pods-Super Slalom.release.xcconfig"; sourceTree = "<group>"; };
 		B109DBE927B2A506004885CB /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		B1258DC627BBE4B200CB9492 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -117,6 +118,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5E3C126627D0E8D4002B866D /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				5E3C126727D0E914002B866D /* MainMenuViewController.swift */,
+				5E3C126B27D2452B002B866D /* MainMenuDelegate.swift */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
 		5E915FB427C91AFD0094195E /* GameScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,14 +141,6 @@
 				5EC9941C27A3CBF80051C5FF /* SlalomType.swift */,
 			);
 			path = GameScene;
-			sourceTree = "<group>";
-		};
-		5E915FB527C91C3E0094195E /* GameOver */ = {
-			isa = PBXGroup;
-			children = (
-				5EF2972227D07604007ED7F1 /* GameOverScene.swift */,
-			);
-			path = GameOver;
 			sourceTree = "<group>";
 		};
 		5EC993F527A3A7F40051C5FF = {
@@ -163,7 +165,7 @@
 		5EC9940027A3A7F50051C5FF /* Super Slalom */ = {
 			isa = PBXGroup;
 			children = (
-				5E915FB527C91C3E0094195E /* GameOver */,
+				5E3C126627D0E8D4002B866D /* MainMenu */,
 				5E915FB427C91AFD0094195E /* GameScene */,
 				B144F39D27AAC24B00CE44B8 /* Fonts */,
 				5EC9940327A3A7F50051C5FF /* GameScene.sks */,
@@ -319,7 +321,6 @@
 				5EC9941227A3A7F60051C5FF /* LaunchScreen.storyboard in Resources */,
 				B144F3B427AAC34C00CE44B8 /* Rubik-ExtraBoldItalic.ttf in Resources */,
 				B144F3BB27AAC34C00CE44B8 /* Rubik-Regular.ttf in Resources */,
-				5E84BA2F27BA91CB004213B1 /* Super-Slalom-Info.plist in Resources */,
 				B144F3B127AAC34C00CE44B8 /* Rubik-SemiBoldItalic.ttf in Resources */,
 				B18722AB27C3D096004635EE /* life_collect.mp3 in Resources */,
 				B144F3BA27AAC34C00CE44B8 /* Rubik-ExtraBold.ttf in Resources */,
@@ -404,7 +405,8 @@
 				5EC9941D27A3CBF80051C5FF /* SlalomType.swift in Sources */,
 				5EC9940227A3A7F50051C5FF /* AppDelegate.swift in Sources */,
 				5EC9941F27A3D04B0051C5FF /* SlalomSpawner.swift in Sources */,
-				5EF2972327D07604007ED7F1 /* GameOverScene.swift in Sources */,
+				5E3C126C27D2452B002B866D /* MainMenuDelegate.swift in Sources */,
+				5E3C126827D0E914002B866D /* MainMenuViewController.swift in Sources */,
 				5E1916F827AA329E00B1D31A /* ObstacleSpawner.swift in Sources */,
 				5EC9941B27A3CB730051C5FF /* Slalom.swift in Sources */,
 				5E1916F627A9CD3300B1D31A /* TutorialNode.swift in Sources */,
