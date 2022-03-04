@@ -9,6 +9,9 @@ target 'Super Slalom' do
   pod 'Google-Mobile-Ads-SDK'
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
-  pod 'FBSDKCoreKit'
+  pod 'FBSDKCoreKit', '~> 8.0.0'
+  pod 'FBSDKLoginKit', '~> 8.0.0'
+  pod 'FBSDKShareKit', '~> 8.0.0'
+  pod 'FBSDKGamingServiceKit', '~> 8.0.0'
 
 end

@@ -4,19 +4,20 @@
 <dict>
 	<key>ATSApplicationFontsPath</key>
 	<string></string>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb1111487982944033</string>
-			</array>
-		</dict>
-	</array>
-	<key>FacebookAppID</key>
-	<string>1111487982944033</string>
-	<key>FacebookDisplayName</key>
-	<string>Super Slalom</string>
+	
+    <key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb381880047084117</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>381880047084117</string>
+    <key>FacebookDisplayName</key>
+    <string>Super Slalom</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-2446678848694050~9471538051</string>
 	<key>SKAdNetworkItems</key>
