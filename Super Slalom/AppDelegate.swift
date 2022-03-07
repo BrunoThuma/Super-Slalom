@@ -8,18 +8,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         // Setup firebase
         FirebaseApp.configure()
         
-        
         // Facebook ads configuration
-        Settings.shared.isAdvertiserTrackingEnabled = true
-        Settings.shared.isAutoLogAppEventsEnabled = true
-        Settings.shared.isAdvertiserIDCollectionEnabled = true
+        // Deprecated, shared istance is not avaible
+        // anymore and values are default set to true
+//        Settings.shared.isAdvertiserTrackingEnabled = true
+//        Settings.shared.isAutoLogAppEventsEnabled = true
+//        Settings.shared.isAdvertiserIDCollectionEnabled = true
         
         ApplicationDelegate.shared.application(
                             application,

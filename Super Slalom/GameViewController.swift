@@ -20,28 +20,6 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if let view = self.view as! SKView? {
-//            // Load the SKScene from 'GameScene.sks'
-//            // FIXME: Use delegate instead of cross reference
-//            scene = (SKScene(fileNamed: "GameScene") as! GameScene)
-//            scene.gameViewController = self
-//            // Set the scale mode to scale to fit the window
-//            scene.scaleMode = .aspectFill
-//
-//            // Present the scene
-//            view.presentScene(scene)
-//
-//            view.ignoresSiblingOrder = true
-//
-//            #if DEBUG
-//                view.showsFPS = true
-//                view.showsNodeCount = true
-//            #elseif RELEASE
-//                view.showsFPS = false
-//                view.showsNodeCount = false
-//            #endif
-//        }
-        
         requestInterstitialAd()
     }
     
@@ -51,6 +29,30 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         let mainMenuVC = MainMenuViewController()
         mainMenuVC.modalPresentationStyle = .fullScreen
         present(mainMenuVC, animated: false, completion: nil)
+    }
+    
+    private func configureGameScene() {
+        if let view = self.view as! SKView? {
+            // Load the SKScene from 'GameScene.sks'
+            // FIXME: Use delegate instead of cross reference
+            scene = (SKScene(fileNamed: "GameScene") as! GameScene)
+            scene.gameViewController = self
+            // Set the scale mode to scale to fit the window
+            scene.scaleMode = .aspectFill
+
+            // Present the scene
+            view.presentScene(scene)
+
+            view.ignoresSiblingOrder = true
+
+            #if DEBUG
+                view.showsFPS = true
+                view.showsNodeCount = true
+            #elseif RELEASE
+                view.showsFPS = false
+                view.showsNodeCount = false
+            #endif
+        }
     }
     
     // Codigo de teste: ca-app-pub-3940256099942544/4411468910

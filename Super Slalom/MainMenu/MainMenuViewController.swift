@@ -54,6 +54,5 @@ class MainMenuViewController: UIViewController {
     
     @objc func playButtonTapped() {
         print("Jonas")
-        self.dismiss(animated: false, completion: nil)
     }
 }
