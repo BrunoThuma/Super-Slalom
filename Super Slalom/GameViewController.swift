@@ -1,10 +1,3 @@
-//
-//  GameViewController.swift
-//  Super Slalom
-//
-//  Created by Bruno Thuma on 28/01/22.
-//
-
 import UIKit
 import SpriteKit
 import GameplayKit
@@ -13,9 +6,10 @@ import FirebaseCrashlytics
 
 class GameViewController: UIViewController, GADFullScreenContentDelegate {
     
-    var scene: GameScene!
+    private var scene: GameScene!
     private var interstitial: GADInterstitialAd?
     private var gamesUntilAd: Int = 3
+    private var mainMenuVC: MainMenuViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,23 +18,19 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        view.backgroundColor = .cyan
-        
-        let mainMenuVC = MainMenuViewController()
-        mainMenuVC.modalPresentationStyle = .fullScreen
-        present(mainMenuVC, animated: false, completion: nil)
+        if self.mainMenuVC == nil {
+            // Initiate a MainMenuVC and asign self as delegate
+            mainMenuVC = MainMenuViewController()
+            mainMenuVC.mainMenuDelegate = self
+            
+            // Can only present new VCs when own view appears
+            presentMainMenu()
+        }
     }
     
-    private func configureGameScene() {
+    private func presentGameScene() {
         if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            // FIXME: Use delegate instead of cross reference
-            scene = (SKScene(fileNamed: "GameScene") as! GameScene)
-            scene.gameViewController = self
-            // Set the scale mode to scale to fit the window
-            scene.scaleMode = .aspectFill
 
-            // Present the scene
             view.presentScene(scene)
 
             view.ignoresSiblingOrder = true
@@ -53,6 +43,20 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
                 view.showsNodeCount = false
             #endif
         }
+    }
+    
+    // Called by GameScene to present MainMenu
+    func goToMainMenu() {
+        presentMainMenu()
+    }
+    
+    private func presentMainMenu() {
+        mainMenuVC.modalPresentationStyle = .fullScreen
+        present(mainMenuVC, animated: false, completion: nil)
+    }
+    
+    private func finishedPresentingMainMenu() {
+        mainMenuVC.dismiss(animated: false, completion: nil)
     }
     
     // Codigo de teste: ca-app-pub-3940256099942544/4411468910
@@ -131,5 +135,24 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+}
+
+extension GameViewController: MainMenuDelegate {
+    func startGame() {
+        mainMenuVC.dismiss(animated: false, completion: nil)
+        
+        if scene == nil {
+            // Load the SKScene from 'GameScene.sks'
+            // FIXME: Use delegate instead of cross reference
+            scene = (SKScene(fileNamed: "GameScene") as! GameScene)
+            scene.gameViewController = self
+            // Set the scale mode to scale to fit the window
+            scene.scaleMode = .aspectFill
+            
+            self.presentGameScene()
+        } else {
+            self.restartGame()
+        }
     }
 }

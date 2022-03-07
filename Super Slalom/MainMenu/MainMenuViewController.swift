@@ -10,7 +10,7 @@ import UIKit
 class MainMenuViewController: UIViewController {
     
     private var playButton, leaderboardButton, settingsButton: UIButton!
-    weak private var mainMenuDelegate: MainMenuDelegate?
+    weak var mainMenuDelegate: MainMenuDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,6 @@ class MainMenuViewController: UIViewController {
     
     private func addPlayButton() {
         playButton = UIButton(type: .custom)
-        playButton.backgroundColor = .cyan
         playButton.setImage(UIImage(named: "mainmenu_play_button"), for: .normal)
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         
@@ -53,6 +52,6 @@ class MainMenuViewController: UIViewController {
     }
     
     @objc func playButtonTapped() {
-        print("Jonas")
+        mainMenuDelegate?.startGame()
     }
 }

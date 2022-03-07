@@ -16,6 +16,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var points: Int = 0
     private var distance: Float = 0
     
+    private var didDeslizouDezena = false
+    private var didDeslizouCentena = false
+    
     private var hub: SKNode!
     private var pinkButton: SKSpriteNode!
     private var blueButton: SKSpriteNode!
@@ -25,8 +28,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var pausedLabel: SKLabelNode!
     private var caraDeslizante: SKSpriteNode!
     private var distanceHub: SKSpriteNode!
-    private var didDeslizouDezena = false
-    private var didDeslizouCentena = false
     
     private var gameOverNode: SKNode!
     private var tutorialOverlay: TutorialNode!
@@ -306,6 +307,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             switch touchedNode.name {
             case "GameOverRestartButton":
                 gameViewController.restartGame()
+            case "GameOverHomeButton":
+                gameViewController.goToMainMenu()
             default:
                 break
             }
