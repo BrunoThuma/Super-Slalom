@@ -4,20 +4,19 @@
 <dict>
 	<key>ATSApplicationFontsPath</key>
 	<string></string>
-	
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fb381880047084117</string>
-      </array>
-      </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>381880047084117</string>
-    <key>FacebookDisplayName</key>
-    <string>Super Slalom</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb381880047084117</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>381880047084117</string>
+	<key>FacebookDisplayName</key>
+	<string>Super Slalom</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-2446678848694050~9471538051</string>
 	<key>SKAdNetworkItems</key>
@@ -178,5 +177,9 @@
 		<string>Rubik-SemiBold.ttf</string>
 		<string>Rubik-Regular.ttf</string>
 	</array>
+	<key>GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED</key>
+	<false/>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>Allow app to track usage on other apps</string>
 </dict>
 </plist>

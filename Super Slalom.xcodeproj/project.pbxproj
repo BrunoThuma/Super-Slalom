@@ -47,6 +47,8 @@
 		B18722AC27C3D096004635EE /* hit_tree.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B18722A627C3D096004635EE /* hit_tree.mp3 */; };
 		B18722AD27C3D096004635EE /* skiing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B18722A727C3D096004635EE /* skiing.mp3 */; };
 		B18722AE27C3D096004635EE /* background_song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B18722A827C3D096004635EE /* background_song.mp3 */; };
+		B1C0BF1827D6343F00314758 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C0BF1727D6343F00314758 /* AdSupport.framework */; };
+		B1C0BF1A27D6344700314758 /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C0BF1927D6344700314758 /* AppTrackingTransparency.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +94,8 @@
 		B18722A627C3D096004635EE /* hit_tree.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit_tree.mp3; sourceTree = "<group>"; };
 		B18722A727C3D096004635EE /* skiing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = skiing.mp3; sourceTree = "<group>"; };
 		B18722A827C3D096004635EE /* background_song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background_song.mp3; sourceTree = "<group>"; };
+		B1C0BF1727D6343F00314758 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		B1C0BF1927D6344700314758 /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		C70D94B58FF83780365CF906 /* Pods-Super Slalom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Super Slalom.debug.xcconfig"; path = "Target Support Files/Pods-Super Slalom/Pods-Super Slalom.debug.xcconfig"; sourceTree = "<group>"; };
 		E33EA4831F24D828E5A399C9 /* Pods_Super_Slalom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Super_Slalom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -102,7 +106,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				410269E1FFF6B6B63C5F1625 /* Pods_Super_Slalom.framework in Frameworks */,
+				B1C0BF1A27D6344700314758 /* AppTrackingTransparency.framework in Frameworks */,
 				B1258DC727BBE4B200CB9492 /* GameKit.framework in Frameworks */,
+				B1C0BF1827D6343F00314758 /* AdSupport.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +239,8 @@
 		D797A6A1BB77CBCA7CE274AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B1C0BF1927D6344700314758 /* AppTrackingTransparency.framework */,
+				B1C0BF1727D6343F00314758 /* AdSupport.framework */,
 				B1258DC627BBE4B200CB9492 /* GameKit.framework */,
 				E33EA4831F24D828E5A399C9 /* Pods_Super_Slalom.framework */,
 			);
@@ -560,7 +568,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = UY7S7HWX9K;
+				DEVELOPMENT_TEAM = 9CTDKATHP7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Super Slalom/Super-Slalom-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -576,7 +584,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "brunothuma.Super-Slalom";
+				PRODUCT_BUNDLE_IDENTIFIER = "Academy-Giovana.Super-Slalom";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -593,7 +601,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = UY7S7HWX9K;
+				DEVELOPMENT_TEAM = 9CTDKATHP7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Super Slalom/Super-Slalom-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -609,7 +617,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "brunothuma.Super-Slalom";
+				PRODUCT_BUNDLE_IDENTIFIER = "Academy-Giovana.Super-Slalom";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -69,6 +69,8 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
             interstitialToken = "ca-app-pub-3940256099942544/4411468910"
         #elseif RELEASE
             interstitialToken = "ca-app-pub-2446678848694050/1742674548"
+        #else
+            interstitialToken = "ca-app-pub-2446678848694050/1742674548"
         #endif
         
         let request = GADRequest()

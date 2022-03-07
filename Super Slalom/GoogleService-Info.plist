@@ -30,5 +30,11 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:771347758413:ios:d1f592e7d8888720d88b04</string>
+    <key>FacebookAdvertiserIDCollectionEnabled</key>
+    <string>FALSE</string>
+    <key>FacebookAutoLogAppEventsEnabled</key>
+    <string>FALSE</string>
+    <key>NSUserTrackingUsageDescription</key>
+    <string>Need tracking for analytics and to deliver custom ads</string>
 </dict>
 </plist>
