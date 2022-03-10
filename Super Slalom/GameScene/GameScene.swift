@@ -400,11 +400,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func contactWithObstacle(obstacle: Obstacle) {
+        
+        timeOutStart = self.lastUpdate
         // FIXME: Why player not moving?
         player.move(0)
         run(hitTreeSound)
-    
-        timeOutStart = self.lastUpdate
     }
     
     func discountPlayerLife() {

@@ -10,6 +10,7 @@ import UIKit
 class MainMenuViewController: UIViewController {
     
     private var playButton, leaderboardButton, settingsButton: UIButton!
+    private var settingsView: SettingsView!
     weak var mainMenuDelegate: MainMenuDelegate?
 
     override func viewDidLoad() {
@@ -18,6 +19,8 @@ class MainMenuViewController: UIViewController {
         assignBackgroundImage()
         
         addPlayButton()
+        
+        showSettingsView()
     }
     
     private func assignBackgroundImage() {
@@ -49,6 +52,26 @@ class MainMenuViewController: UIViewController {
         ]
         
         NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func showSettingsView() {
+        settingsView = SettingsView(musicIsOn: true, soundsAreOn: false)
+        
+        view.addSubview(settingsView)
+        
+        settingsView.translatesAutoresizingMaskIntoConstraints = false
+        let bgImgSize = settingsView.bgImage.size
+        
+        let constraints = [
+            settingsView.widthAnchor.constraint(equalToConstant: bgImgSize.width),
+            settingsView.heightAnchor.constraint(equalToConstant: bgImgSize.height),
+            settingsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            settingsView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+        
+        settingsView.recalculateBackgroundConstraints()
     }
     
     @objc func playButtonTapped() {
