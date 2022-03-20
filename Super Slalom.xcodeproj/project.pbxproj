@@ -12,7 +12,7 @@
 		5E1916F827AA329E00B1D31A /* ObstacleSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */; };
 		5E3C126827D0E914002B866D /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C126727D0E914002B866D /* MainMenuViewController.swift */; };
 		5E3C126C27D2452B002B866D /* MainMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C126B27D2452B002B866D /* MainMenuDelegate.swift */; };
-		5E5FD8B927DA359E006ED7B5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5FD8B827DA359E006ED7B5 /* SettingsViewController.swift */; };
+		5E84394C27DBCCB900485156 /* SuperSlalomAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E84394B27DBCCB900485156 /* SuperSlalomAudioPlayer.swift */; };
 		5EA302D627AC132D00DA795F /* ObstacleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA302D527AC132D00DA795F /* ObstacleType.swift */; };
 		5EBAC2C527C65F2200310D0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EBAC2C427C65F2200310D0F /* GoogleService-Info.plist */; };
 		5EC9940227A3A7F50051C5FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9940127A3A7F50051C5FF /* AppDelegate.swift */; };
@@ -58,7 +58,7 @@
 		5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleSpawner.swift; sourceTree = "<group>"; };
 		5E3C126727D0E914002B866D /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		5E3C126B27D2452B002B866D /* MainMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuDelegate.swift; sourceTree = "<group>"; };
-		5E5FD8B827DA359E006ED7B5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		5E84394B27DBCCB900485156 /* SuperSlalomAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSlalomAudioPlayer.swift; sourceTree = "<group>"; };
 		5E84BA2E27BA91CB004213B1 /* Super-Slalom-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Super-Slalom-Info.plist"; sourceTree = "<group>"; };
 		5EA302D527AC132D00DA795F /* ObstacleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleType.swift; sourceTree = "<group>"; };
 		5EBAC2C427C65F2200310D0F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -134,7 +134,6 @@
 				5E3C126727D0E914002B866D /* MainMenuViewController.swift */,
 				5E3C126B27D2452B002B866D /* MainMenuDelegate.swift */,
 				5EF2FFAC27D8D48400C464A0 /* SettingsView.swift */,
-				5E5FD8B827DA359E006ED7B5 /* SettingsViewController.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -151,6 +150,7 @@
 				5EC9941A27A3CB730051C5FF /* Slalom.swift */,
 				5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */,
 				5EC9941C27A3CBF80051C5FF /* SlalomType.swift */,
+				5E84394B27DBCCB900485156 /* SuperSlalomAudioPlayer.swift */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -414,12 +414,12 @@
 				5EA302D627AC132D00DA795F /* ObstacleType.swift in Sources */,
 				B109DBEA27B2A506004885CB /* Obstacle.swift in Sources */,
 				5EC9941927A3C6990051C5FF /* Player.swift in Sources */,
+				5E84394C27DBCCB900485156 /* SuperSlalomAudioPlayer.swift in Sources */,
 				5EC9940827A3A7F50051C5FF /* GameScene.swift in Sources */,
 				5EC9940A27A3A7F50051C5FF /* GameViewController.swift in Sources */,
 				5EC9941D27A3CBF80051C5FF /* SlalomType.swift in Sources */,
 				5EC9940227A3A7F50051C5FF /* AppDelegate.swift in Sources */,
 				5EF2FFAD27D8D48400C464A0 /* SettingsView.swift in Sources */,
-				5E5FD8B927DA359E006ED7B5 /* SettingsViewController.swift in Sources */,
 				5EC9941F27A3D04B0051C5FF /* SlalomSpawner.swift in Sources */,
 				5E3C126C27D2452B002B866D /* MainMenuDelegate.swift in Sources */,
 				5E3C126827D0E914002B866D /* MainMenuViewController.swift in Sources */,

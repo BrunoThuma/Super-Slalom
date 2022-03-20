@@ -38,21 +38,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var motionManager: CMMotionManager!
     private var destX: CGFloat!
     
-    private var skiingSound = SKAction.playSoundFileNamed("skiing.mp3", waitForCompletion: false)
-    private var hitTreeSound = SKAction.playSoundFileNamed("hit_tree.mp3", waitForCompletion: false)
-    private var hitRightFlagSound = SKAction.playSoundFileNamed("hit_right_flag.mp3", waitForCompletion: false)
-    private var hitWrongFlagSound = SKAction.playSoundFileNamed("hit_wrong_flag.mp3", waitForCompletion: false)
-    private var lifeCollectSound = SKAction.playSoundFileNamed("life_collect.mp3", waitForCompletion: false)
+    let audioPlayer = SuperSlalomAudioPlayer.shared
     
     var difficultyScale: CGFloat = 2.5
     
     // MARK: Overriden methods
     
     override func didMove(to view: SKView) {
-        
-        let backgroundSong = SKAudioNode(fileNamed: "background_song.mp3")
-        self.addChild(backgroundSong)
-        
         view.showsPhysics = false
         
         physicsWorld.contactDelegate = self
@@ -98,6 +90,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         slalomSpawner = SlalomSpawner(parent: self)
         
         setupMotionManager()
+        
+        setupMusic()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -137,6 +131,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
     }
+    
+    // MARK: Sound managing methods
+    
+    func setupMusic() {
+        self.addChild(audioPlayer)
+    }
+    
     
     // MARK: Intro status methods
     
@@ -192,13 +193,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             switch touchedNode.name {
             case "RedSlalomButton":
                 player.changeStickColor(color: .red)
-                run(skiingSound)
             case "BlueSlalomButton":
                 player.changeStickColor(color: .blue)
-                run(skiingSound)
             default:
                 break
             }
+            
+            audioPlayer.runSkiingSound()
         }
     }
     
@@ -374,9 +375,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    // SKNode -> SKSpriteNode -> Slalom
-    // node           ->         slalomNode
-    
     func playerContact(with node: SKNode) {
         guard let slalomNode = node as! Slalom? else {
             return
@@ -389,11 +387,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if slalomNode.slalomType == player.stickColor {
             points += 1
             pointsLabel.text = "\(points)"
-            run(hitRightFlagSound)
+            
+            audioPlayer.runRightFlagSound()
+//            run(hitRightFlagSound)
+            
             slalomNode.setupWasHitAnimation()
         } else {
             discountPlayerLife()
-            run(hitWrongFlagSound)
+            
+            audioPlayer.runWrongFlagSound()
+//            run(hitWrongFlagSound)
         }
         
         slalomNode.wasHit = true
@@ -404,7 +407,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timeOutStart = self.lastUpdate
         // FIXME: Why player not moving?
         player.move(0)
-        run(hitTreeSound)
+        
+        audioPlayer.runHitTreeSound()
+//        run(hitTreeSound)
+        
     }
     
     func discountPlayerLife() {

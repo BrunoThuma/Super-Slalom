@@ -11,16 +11,27 @@ class MainMenuViewController: UIViewController {
     
     private var playButton, leaderboardButton, settingsButton: UIButton!
     private var settingsView: SettingsView!
-    weak var mainMenuDelegate: MainMenuDelegate?
-
+    
+    public weak var mainMenuDelegate: MainMenuDelegate?
+    public let audioPlayer = SuperSlalomAudioPlayer.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         assignBackgroundImage()
         
-        addPlayButton()
+        setupPlayButton()
+        setupSettingsButton()
         
-        showSettingsView()
+        setupSettingsView()
+        
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        if touch?.view != self.settingsView {
+            settingsView.isHidden = true
+        }
     }
     
     private func assignBackgroundImage() {
@@ -37,7 +48,7 @@ class MainMenuViewController: UIViewController {
         self.view.sendSubviewToBack(imageView)
     }
     
-    private func addPlayButton() {
+    private func setupPlayButton() {
         playButton = UIButton(type: .custom)
         playButton.setImage(UIImage(named: "mainmenu_play_button"), for: .normal)
         playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
@@ -54,8 +65,28 @@ class MainMenuViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
-    private func showSettingsView() {
-        settingsView = SettingsView(musicIsOn: true, soundsAreOn: false)
+    private func setupSettingsButton() {
+        settingsButton = UIButton(type: .custom)
+        settingsButton.setImage(UIImage(named: "mainmenu_settings_button"), for: .normal)
+        settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
+        
+        view.addSubview(settingsButton)
+        
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints = [
+            settingsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -100),
+            settingsButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 30)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    private func setupSettingsView() {
+        settingsView = SettingsView(musicIsOn: true,
+                                    musicClosure: switchedMusicToggle,
+                                    soundsAreOn: true,
+                                    soundsClosure: switchedSoundsToggle)
         
         view.addSubview(settingsView)
         
@@ -71,10 +102,30 @@ class MainMenuViewController: UIViewController {
         
         NSLayoutConstraint.activate(constraints)
         
-        settingsView.recalculateBackgroundConstraints()
+        settingsView.isHidden = true
+    }
+    
+    func switchedSoundsToggle(_ toggleIsOn: Bool) {
+        if toggleIsOn {
+            audioPlayer.muteSounds()
+        } else {
+            audioPlayer.muteSounds()
+        }
+    }
+    
+    func switchedMusicToggle(_ toggleIsOn: Bool) {
+        if toggleIsOn {
+            audioPlayer.unmuteMusic()
+        } else {
+            audioPlayer.muteMusic()
+        }
     }
     
     @objc func playButtonTapped() {
         mainMenuDelegate?.startGame()
+    }
+    
+    @objc func settingsButtonTapped() {
+        settingsView.isHidden = false
     }
 }
