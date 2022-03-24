@@ -19,6 +19,8 @@
 	<string>Super Slalom</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-2446678848694050~9471538051</string>
+	<key>GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED</key>
+	<false/>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
@@ -177,9 +179,5 @@
 		<string>Rubik-SemiBold.ttf</string>
 		<string>Rubik-Regular.ttf</string>
 	</array>
-	<key>GOOGLE_ANALYTICS_IDFV_COLLECTION_ENABLED</key>
-	<false/>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>Allow app to track usage on other apps</string>
 </dict>
 </plist>

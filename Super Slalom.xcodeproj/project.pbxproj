@@ -150,7 +150,6 @@
 				5EC9941A27A3CB730051C5FF /* Slalom.swift */,
 				5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */,
 				5EC9941C27A3CBF80051C5FF /* SlalomType.swift */,
-				5E84394B27DBCCB900485156 /* SuperSlalomAudioPlayer.swift */,
 			);
 			path = GameScene;
 			sourceTree = "<group>";
@@ -183,6 +182,7 @@
 				5EC9940327A3A7F50051C5FF /* GameScene.sks */,
 				5EC9940127A3A7F50051C5FF /* AppDelegate.swift */,
 				5EC9940927A3A7F50051C5FF /* GameViewController.swift */,
+				5E84394B27DBCCB900485156 /* SuperSlalomAudioPlayer.swift */,
 				5EC9940B27A3A7F50051C5FF /* Main.storyboard */,
 				5EC9941027A3A7F60051C5FF /* LaunchScreen.storyboard */,
 				5EC9940E27A3A7F60051C5FF /* Assets.xcassets */,
@@ -583,6 +583,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -617,6 +618,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = gamekit;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

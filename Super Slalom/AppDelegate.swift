@@ -16,19 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup firebase
         FirebaseApp.configure()
         
-        // Facebook ads configuration
-        // Deprecated, shared istance is not avaible
-        // anymore and values are default set to true
-//        Settings.shared.isAdvertiserTrackingEnabled = true
-//        Settings.shared.isAutoLogAppEventsEnabled = true
-//        Settings.shared.isAdvertiserIDCollectionEnabled = true
-        
         ApplicationDelegate.shared.application(
                             application,
                             didFinishLaunchingWithOptions: launchOptions)
         
         // AdMob configuration
         GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+        
         
         return true
     }
@@ -115,6 +110,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //you got permission to track, iOS 14 is not yet installed
             }
         }
-
 }
 

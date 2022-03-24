@@ -269,6 +269,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameOverPoints.text = "\(points)"
         gameOverDistance.text = "\(Int(distance.rounded()))m"
         
+        gameViewController.updateGameCenterScore(with: points)
+        
     }
     
     func reset() {

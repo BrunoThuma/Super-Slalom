@@ -22,6 +22,7 @@ class MainMenuViewController: UIViewController {
         
         setupPlayButton()
         setupSettingsButton()
+        setupLeaderboardButton()
         
         setupSettingsView()
         
@@ -105,6 +106,23 @@ class MainMenuViewController: UIViewController {
         settingsView.isHidden = true
     }
     
+    private func setupLeaderboardButton() {
+        settingsButton = UIButton(type: .custom)
+        settingsButton.setImage(UIImage(named: "mainmenu_leaderboards_button"), for: .normal)
+        settingsButton.addTarget(self, action: #selector(leaderboardButtonTapped), for: .touchUpInside)
+        
+        view.addSubview(settingsButton)
+        
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints = [
+            settingsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 100),
+            settingsButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 30)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
     func switchedSoundsToggle(_ toggleIsOn: Bool) {
         if toggleIsOn {
             audioPlayer.muteSounds()
@@ -127,5 +145,9 @@ class MainMenuViewController: UIViewController {
     
     @objc func settingsButtonTapped() {
         settingsView.isHidden = false
+    }
+    
+    @objc func leaderboardButtonTapped() {
+        navigationController?.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
     }
 }
