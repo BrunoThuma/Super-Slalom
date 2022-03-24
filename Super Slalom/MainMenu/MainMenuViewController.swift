@@ -1,11 +1,5 @@
-//
-//  MainMenuViewController.swift
-//  Super Slalom
-//
-//  Created by Bruno Thuma on 03/03/22.
-//
-
 import UIKit
+import GameKit
 
 class MainMenuViewController: UIViewController {
     
@@ -13,6 +7,9 @@ class MainMenuViewController: UIViewController {
     private var settingsView: SettingsView!
     
     public let audioPlayer = SuperSlalomAudioPlayer.shared
+    
+    private var gcEnabled: Bool! // Check if the user has Game Center enabled
+    private var gcDefaultLeaderBoard: String! // Check the default leaderboardID
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +22,8 @@ class MainMenuViewController: UIViewController {
         
         setupSettingsView()
         
+        GameCenterManager.shared.delegate = self
+        GameCenterManager.shared.authenticateLocalPlayer()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -148,5 +147,12 @@ class MainMenuViewController: UIViewController {
     
     @objc func leaderboardButtonTapped() {
         print("leaderboardTapped")
+    }
+}
+
+
+extension MainMenuViewController: GameCenterDelegate {
+    func presentGameCenterLogin(_ vc: UIViewController, animated: Bool, completion: @escaping () -> Void) {
+        self.present(vc, animated: animated, completion: completion)
     }
 }

@@ -1,5 +1,4 @@
 import UIKit
-import GameKit
 import SpriteKit
 import GameplayKit
 import GoogleMobileAds
@@ -7,12 +6,9 @@ import FirebaseCrashlytics
 
 class GameViewController: UIViewController, GADFullScreenContentDelegate {
     
-    private var scene: GameScene!
+    private var gameScene: GameScene!
     private var interstitial: GADInterstitialAd?
     private var adsManager = SuperSlalomAdsManager.shared
-    
-    private var gcEnabled: Bool! // Check if the user has Game Center enabled
-    private var gcDefaultLeaderBoard: String! // Check the default leaderboardID
     
     // MARK: overriden methods
     override func loadView() {
@@ -29,26 +25,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         
         super.viewDidLoad()
         
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                
-                // Present the scene
-                view.presentScene(scene)
-            }
-
-            view.ignoresSiblingOrder = true
-
-            #if DEBUG
-                view.showsFPS = true
-                view.showsNodeCount = true
-            #elseif RELEASE
-                view.showsFPS = false
-                view.showsNodeCount = false
-            #endif
-        }
+        startGame()
     }
     
     override var shouldAutorotate: Bool {
@@ -112,13 +89,13 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     /// Tells the delegate that the ad failed to present full screen content.
     func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
         print("Ad did fail to present full screen content.")
-        scene.reset()
+        gameScene.reset()
     }
     
     /// Tells the delegate that the ad dismissed full screen content.
     func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         requestInterstitialAd()
-        scene.reset()
+        gameScene.reset()
     }
     
     func restartGame() {
@@ -128,7 +105,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
             adsManager.gamesUntilAd = 3
             shouldDisplayInterstitial()
         } else {
-            scene.reset()
+            gameScene.reset()
         }
     }
     
@@ -140,20 +117,10 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         }
     }
     
-    func updateGameCenterScore(with value:Int) {
-        if (self.gcEnabled) {
-            GKLeaderboard.submitScore(value,
-                                      context: 0,
-                                      player: GKLocalPlayer.local,
-                                      leaderboardIDs: [self.gcDefaultLeaderBoard],
-                                      completionHandler: {error in})
-        }
-    }
-    
     private func presentGameScene() {
         if let view = self.view as! SKView? {
 
-            view.presentScene(scene)
+            view.presentScene(gameScene)
 
             view.ignoresSiblingOrder = true
 
@@ -168,13 +135,13 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     }
     
     private func startGame() {
-        if scene == nil {
+        if gameScene == nil {
             // Load the SKScene from 'GameScene.sks'
             // FIXME: Use delegate instead of cross reference
-            scene = (SKScene(fileNamed: "GameScene") as! GameScene)
-            scene.gameViewController = self
+            gameScene = (SKScene(fileNamed: "GameScene") as! GameScene)
+            gameScene.gameViewController = self
             // Set the scale mode to scale to fit the window
-            scene.scaleMode = .aspectFill
+            gameScene.scaleMode = .aspectFill
             
             self.presentGameScene()
         } else {
@@ -185,41 +152,5 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     /// Tells the delegate that the ad presented full screen content.
     private func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         print("Ad did present full screen content.")
-    }
-}
-
-// TODO: Make a file just for GameCenter authentication
-extension GameViewController {
-    
-    func authenticateLocalPlayer() {
-        let localPlayer: GKLocalPlayer = GKLocalPlayer.local
-
-        localPlayer.authenticateHandler = {(ViewController, error) -> Void in
-            if ((ViewController) != nil) {
-                // Show game center login if player is not logged in
-                self.present(ViewController!, animated: true, completion: nil)
-            }
-            else if (localPlayer.isAuthenticated) {
-                
-                // Player is already authenticated and logged in
-                self.gcEnabled = true
-
-                // Get the default leaderboard ID
-                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifer, error) in
-                    if error != nil {
-                        print(error!)
-                    }
-                    else {
-                        self.gcDefaultLeaderBoard = leaderboardIdentifer!
-                    }
-                 })
-            }
-            else {
-                // Game center is not enabled on the user's device
-                self.gcEnabled = false
-                print("Local player could not be authenticated!")
-                print(error!)
-            }
-        }
     }
 }
