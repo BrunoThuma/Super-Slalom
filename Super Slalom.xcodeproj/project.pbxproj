@@ -11,7 +11,7 @@
 		5E1916F627A9CD3300B1D31A /* TutorialNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1916F527A9CD3300B1D31A /* TutorialNode.swift */; };
 		5E1916F827AA329E00B1D31A /* ObstacleSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */; };
 		5E3C126827D0E914002B866D /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C126727D0E914002B866D /* MainMenuViewController.swift */; };
-		5E3C126C27D2452B002B866D /* MainMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3C126B27D2452B002B866D /* MainMenuDelegate.swift */; };
+		5E7AB20F27EC222500B4B097 /* SuperSlalomAdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7AB20E27EC222500B4B097 /* SuperSlalomAdsManager.swift */; };
 		5E84394C27DBCCB900485156 /* SuperSlalomAudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E84394B27DBCCB900485156 /* SuperSlalomAudioPlayer.swift */; };
 		5EA302D627AC132D00DA795F /* ObstacleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA302D527AC132D00DA795F /* ObstacleType.swift */; };
 		5EBAC2C527C65F2200310D0F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EBAC2C427C65F2200310D0F /* GoogleService-Info.plist */; };
@@ -56,7 +56,7 @@
 		5E1916F527A9CD3300B1D31A /* TutorialNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialNode.swift; sourceTree = "<group>"; };
 		5E1916F727AA329E00B1D31A /* ObstacleSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleSpawner.swift; sourceTree = "<group>"; };
 		5E3C126727D0E914002B866D /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		5E3C126B27D2452B002B866D /* MainMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuDelegate.swift; sourceTree = "<group>"; };
+		5E7AB20E27EC222500B4B097 /* SuperSlalomAdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSlalomAdsManager.swift; sourceTree = "<group>"; };
 		5E84394B27DBCCB900485156 /* SuperSlalomAudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperSlalomAudioPlayer.swift; sourceTree = "<group>"; };
 		5E84BA2E27BA91CB004213B1 /* Super-Slalom-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Super-Slalom-Info.plist"; sourceTree = "<group>"; };
 		5EA302D527AC132D00DA795F /* ObstacleType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleType.swift; sourceTree = "<group>"; };
@@ -130,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				5E3C126727D0E914002B866D /* MainMenuViewController.swift */,
-				5E3C126B27D2452B002B866D /* MainMenuDelegate.swift */,
 				5EF2FFAC27D8D48400C464A0 /* SettingsView.swift */,
 			);
 			path = MainMenu;
@@ -181,6 +180,7 @@
 				5EC9940127A3A7F50051C5FF /* AppDelegate.swift */,
 				5EC9940927A3A7F50051C5FF /* GameViewController.swift */,
 				5E84394B27DBCCB900485156 /* SuperSlalomAudioPlayer.swift */,
+				5E7AB20E27EC222500B4B097 /* SuperSlalomAdsManager.swift */,
 				5EC9941027A3A7F60051C5FF /* LaunchScreen.storyboard */,
 				5EC9940E27A3A7F60051C5FF /* Assets.xcassets */,
 				5E84BA2E27BA91CB004213B1 /* Super-Slalom-Info.plist */,
@@ -417,8 +417,8 @@
 				5EC9940227A3A7F50051C5FF /* AppDelegate.swift in Sources */,
 				5EF2FFAD27D8D48400C464A0 /* SettingsView.swift in Sources */,
 				5EC9941F27A3D04B0051C5FF /* SlalomSpawner.swift in Sources */,
-				5E3C126C27D2452B002B866D /* MainMenuDelegate.swift in Sources */,
 				5E3C126827D0E914002B866D /* MainMenuViewController.swift in Sources */,
+				5E7AB20F27EC222500B4B097 /* SuperSlalomAdsManager.swift in Sources */,
 				5E1916F827AA329E00B1D31A /* ObstacleSpawner.swift in Sources */,
 				5EC9941B27A3CB730051C5FF /* Slalom.swift in Sources */,
 				5E1916F627A9CD3300B1D31A /* TutorialNode.swift in Sources */,

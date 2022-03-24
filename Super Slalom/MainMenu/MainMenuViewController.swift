@@ -12,7 +12,6 @@ class MainMenuViewController: UIViewController {
     private var playButton, leaderboardButton, settingsButton: UIButton!
     private var settingsView: SettingsView!
     
-    public weak var mainMenuDelegate: MainMenuDelegate?
     public let audioPlayer = SuperSlalomAudioPlayer.shared
     
     override func viewDidLoad() {
@@ -140,9 +139,7 @@ class MainMenuViewController: UIViewController {
     }
     
     @objc func playButtonTapped() {
-//        mainMenuDelegate?.startGame()
-//        navigationController?.pushViewController(GameViewController(), animated: true)
-        print("Play button tapped")
+        navigationController?.pushViewController(GameViewController(), animated: true)
     }
     
     @objc func settingsButtonTapped() {

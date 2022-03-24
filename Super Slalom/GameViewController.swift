@@ -9,28 +9,45 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     
     private var scene: GameScene!
     private var interstitial: GADInterstitialAd?
-    private var gamesUntilAd: Int = 3
-    private var mainMenuVC: MainMenuViewController!
+    private var adsManager = SuperSlalomAdsManager.shared
     
     private var gcEnabled: Bool! // Check if the user has Game Center enabled
     private var gcDefaultLeaderBoard: String! // Check the default leaderboardID
     
-    
     // MARK: overriden methods
+    override func loadView() {
+        self.view = SKView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.isHidden = true
+        
         requestInterstitialAd()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if self.mainMenuVC == nil {
-            // Initiate a MainMenuVC and asign self as delegate
-            mainMenuVC = MainMenuViewController()
-            mainMenuVC.mainMenuDelegate = self
-            
-            // Can only present new VCs when own view appears
-            presentMainMenu()
+        
+        super.viewDidLoad()
+        
+        if let view = self.view as! SKView? {
+            // Load the SKScene from 'GameScene.sks'
+            if let scene = SKScene(fileNamed: "GameScene") {
+                // Set the scale mode to scale to fit the window
+                scene.scaleMode = .aspectFill
+                
+                // Present the scene
+                view.presentScene(scene)
+            }
+
+            view.ignoresSiblingOrder = true
+
+            #if DEBUG
+                view.showsFPS = true
+                view.showsNodeCount = true
+            #elseif RELEASE
+                view.showsFPS = false
+                view.showsNodeCount = false
+            #endif
         }
     }
     
@@ -53,7 +70,14 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     // MARK: Public methods
     /// Called by GameScene to present MainMenu
     func goToMainMenu() {
-        presentMainMenu()
+        adsManager.gamesUntilAd -= 1
+        
+        if adsManager.gamesUntilAd <= 0 {
+            adsManager.gamesUntilAd = 3
+            shouldDisplayInterstitial()
+        } else {
+            self.dismiss(animated: true)
+        }
     }
     
     func requestInterstitialAd() {
@@ -98,10 +122,10 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     }
     
     func restartGame() {
-        gamesUntilAd -= 1
+        adsManager.gamesUntilAd -= 1
         
-        if gamesUntilAd <= 0 {
-            gamesUntilAd = 3
+        if adsManager.gamesUntilAd <= 0 {
+            adsManager.gamesUntilAd = 3
             shouldDisplayInterstitial()
         } else {
             scene.reset()
@@ -126,12 +150,6 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         }
     }
     
-    // MARK: Private methods
-    private func presentMainMenu() {
-        mainMenuVC.modalPresentationStyle = .fullScreen
-        present(mainMenuVC, animated: false, completion: nil)
-    }
-    
     private func presentGameScene() {
         if let view = self.view as! SKView? {
 
@@ -149,16 +167,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         }
     }
     
-    /// Tells the delegate that the ad presented full screen content.
-    private func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
-        print("Ad did present full screen content.")
-    }
-}
-
-extension GameViewController: MainMenuDelegate {
-    func startGame() {
-        mainMenuVC.dismiss(animated: false, completion: nil)
-        
+    private func startGame() {
         if scene == nil {
             // Load the SKScene from 'GameScene.sks'
             // FIXME: Use delegate instead of cross reference
@@ -171,6 +180,11 @@ extension GameViewController: MainMenuDelegate {
         } else {
             self.restartGame()
         }
+    }
+    
+    /// Tells the delegate that the ad presented full screen content.
+    private func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        print("Ad did present full screen content.")
     }
 }
 

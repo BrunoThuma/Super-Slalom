@@ -24,10 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GADMobileAds.sharedInstance().start(completionHandler: nil)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let nav1 = UINavigationController()
-        let mainView = GameViewController(nibName: nil, bundle: nil) //ViewController = Name of your controller
-        nav1.viewControllers = [mainView]
-        self.window!.rootViewController = nav1
+        let navController = UINavigationController()
+        let mainView = MainMenuViewController(nibName: nil, bundle: nil) //ViewController = Name of your controller
+        navController.viewControllers = [mainView]
+        self.window!.rootViewController = navController
         self.window?.makeKeyAndVisible()
         
         return true
