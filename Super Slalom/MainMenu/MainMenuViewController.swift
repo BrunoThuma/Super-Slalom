@@ -140,7 +140,9 @@ class MainMenuViewController: UIViewController {
     }
     
     @objc func playButtonTapped() {
-        mainMenuDelegate?.startGame()
+//        mainMenuDelegate?.startGame()
+//        navigationController?.pushViewController(GameViewController(), animated: true)
+        print("Play button tapped")
     }
     
     @objc func settingsButtonTapped() {
@@ -148,6 +150,6 @@ class MainMenuViewController: UIViewController {
     }
     
     @objc func leaderboardButtonTapped() {
-        navigationController?.present(<#T##viewControllerToPresent: UIViewController##UIViewController#>, animated: <#T##Bool#>, completion: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+        print("leaderboardTapped")
     }
 }
