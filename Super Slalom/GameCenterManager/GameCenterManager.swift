@@ -34,7 +34,6 @@ final class GameCenterManager {
                         print(error!)
                     }
                     else {
-                        
                         self.gcDefaultLeaderBoard = leaderboardIdentifer!
                     }
                  })
@@ -51,7 +50,7 @@ final class GameCenterManager {
     
     func updateGameCenterScore(with value:Int) {
         if (gcEnabled) {
-            print(gcEnabled)
+//            print(gcEnabled)
             GKLeaderboard.submitScore(value,
                                       context: 0,
                                       player: GKLocalPlayer.local,

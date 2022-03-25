@@ -146,7 +146,13 @@ class MainMenuViewController: UIViewController {
     }
     
     @objc func leaderboardButtonTapped() {
-        print("leaderboardTapped")
+        print("Presenting laederboardVC")
+        
+        let gameCenterVC = GKGameCenterViewController(leaderboardID: GameCenterManager.shared.gcDefaultLeaderBoard,
+                                                      playerScope: .global,
+                                                      timeScope: .allTime)
+        gameCenterVC.gameCenterDelegate = self
+        present(gameCenterVC, animated: true, completion: nil)
     }
 }
 
@@ -154,5 +160,12 @@ class MainMenuViewController: UIViewController {
 extension MainMenuViewController: GameCenterDelegate {
     func presentGameCenterLogin(_ vc: UIViewController, animated: Bool, completion: @escaping () -> Void) {
         self.present(vc, animated: animated, completion: completion)
+    }
+}
+
+
+extension MainMenuViewController: GKGameCenterControllerDelegate {
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true)
     }
 }
