@@ -148,6 +148,11 @@ class MainMenuViewController: UIViewController {
     @objc func leaderboardButtonTapped() {
         print("Presenting laederboardVC")
         
+        guard GameCenterManager.shared.gcDefaultLeaderBoard != nil else {
+            self.alertLeaderboardNotAvailable()
+            return
+        }
+        
         let gameCenterVC = GKGameCenterViewController(leaderboardID: GameCenterManager.shared.gcDefaultLeaderBoard,
                                                       playerScope: .global,
                                                       timeScope: .allTime)
@@ -160,6 +165,18 @@ class MainMenuViewController: UIViewController {
 extension MainMenuViewController: GameCenterDelegate {
     func presentGameCenterLogin(_ vc: UIViewController, animated: Bool, completion: @escaping () -> Void) {
         self.present(vc, animated: animated, completion: completion)
+    }
+    
+    func alertLeaderboardNotAvailable() {
+        let alert = UIAlertController(title: "Leaderboard not Available",
+                                      message: "Leaderboard could not be loaded, default leaderboard value is \(String(describing: GameCenterManager.shared.gcDefaultLeaderBoard))",
+                                      preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"),
+                                      style: .default,
+                                      handler: { _ in }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

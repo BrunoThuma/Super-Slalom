@@ -12,6 +12,8 @@ final class GameCenterManager {
     
     private init() { }
     
+    // MARK: Public methods
+    
     func authenticateLocalPlayer() {
         let localPlayer: GKLocalPlayer = GKLocalPlayer.local
 
@@ -50,12 +52,22 @@ final class GameCenterManager {
     
     func updateGameCenterScore(with value:Int) {
         if (gcEnabled) {
-//            print(gcEnabled)
-            GKLeaderboard.submitScore(value,
-                                      context: 0,
-                                      player: GKLocalPlayer.local,
-                                      leaderboardIDs: [gcDefaultLeaderBoard],
-                                      completionHandler: {error in})
+            if gcDefaultLeaderBoard != nil {
+                //            print(gcEnabled)
+                            GKLeaderboard.submitScore(value,
+                                                      context: 0,
+                                                      player: GKLocalPlayer.local,
+                                                      leaderboardIDs: [gcDefaultLeaderBoard],
+                                                      completionHandler: {error in})
+            } else {
+                mainMenuAlertLeaderboardNotAvailable()
+            }
         }
+    }
+    
+    // MARK: Private methods
+    
+    private func mainMenuAlertLeaderboardNotAvailable() {
+        delegate?.alertLeaderboardNotAvailable()
     }
 }
