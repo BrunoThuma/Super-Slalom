@@ -52,9 +52,9 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         if adsManager.gamesUntilAd <= 0 {
             adsManager.gamesUntilAd = 3
             shouldDisplayInterstitial()
-        } else {
-            self.dismiss(animated: true)
         }
+        
+        self.dismiss(animated: true)
     }
     
     func requestInterstitialAd() {

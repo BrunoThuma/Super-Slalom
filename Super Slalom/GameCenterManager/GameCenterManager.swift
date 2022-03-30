@@ -23,7 +23,6 @@ final class GameCenterManager {
                 self.delegate?.presentGameCenterLogin(ViewController!, animated: true, completion: {})
             }
             else if (localPlayer.isAuthenticated) {
-                
                 print("player is authenticated")
                 
                 // Player is already authenticated and logged in

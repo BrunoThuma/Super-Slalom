@@ -148,10 +148,10 @@ class MainMenuViewController: UIViewController {
     @objc func leaderboardButtonTapped() {
         print("Presenting laederboardVC")
         
-        guard GameCenterManager.shared.gcDefaultLeaderBoard != nil else {
-            self.alertLeaderboardNotAvailable()
-            return
-        }
+//        guard GameCenterManager.shared.gcDefaultLeaderBoard != nil else {
+//            self.alertLeaderboardNotAvailable()
+//            return
+//        }
         
         let gameCenterVC = GKGameCenterViewController(leaderboardID: GameCenterManager.shared.gcDefaultLeaderBoard,
                                                       playerScope: .global,
