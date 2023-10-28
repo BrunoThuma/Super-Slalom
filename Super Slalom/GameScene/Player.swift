@@ -22,7 +22,7 @@ class Player {
     
     init(node: SKSpriteNode, parentNode: SKNode) {
         self.node = node
-        self.lives = 5
+        self.lives = 1
         self.startPosition = node.position
         self.parent = parentNode
         

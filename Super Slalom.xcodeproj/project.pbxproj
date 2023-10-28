@@ -25,6 +25,7 @@
 		5EC9941B27A3CB730051C5FF /* Slalom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941A27A3CB730051C5FF /* Slalom.swift */; };
 		5EC9941D27A3CBF80051C5FF /* SlalomType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941C27A3CBF80051C5FF /* SlalomType.swift */; };
 		5EC9941F27A3D04B0051C5FF /* SlalomSpawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */; };
+		5ECEBAA72AED9B52003816BE /* GameSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECEBAA62AED9B52003816BE /* GameSceneDelegate.swift */; };
 		5ED0018227ECD639008BB3F7 /* GameCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED0018127ECD639008BB3F7 /* GameCenterManager.swift */; };
 		5ED0018427ECDD4F008BB3F7 /* GameCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ED0018327ECDD4F008BB3F7 /* GameCenterDelegate.swift */; };
 		5EF2FFAD27D8D48400C464A0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF2FFAC27D8D48400C464A0 /* SettingsView.swift */; };
@@ -74,6 +75,7 @@
 		5EC9941A27A3CB730051C5FF /* Slalom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slalom.swift; sourceTree = "<group>"; };
 		5EC9941C27A3CBF80051C5FF /* SlalomType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlalomType.swift; sourceTree = "<group>"; };
 		5EC9941E27A3D04B0051C5FF /* SlalomSpawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlalomSpawner.swift; sourceTree = "<group>"; };
+		5ECEBAA62AED9B52003816BE /* GameSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneDelegate.swift; sourceTree = "<group>"; };
 		5ED0018127ECD639008BB3F7 /* GameCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterManager.swift; sourceTree = "<group>"; };
 		5ED0018327ECDD4F008BB3F7 /* GameCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterDelegate.swift; sourceTree = "<group>"; };
 		5EF2FFAC27D8D48400C464A0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				5EC9940327A3A7F50051C5FF /* GameScene.sks */,
 				5EC9940127A3A7F50051C5FF /* AppDelegate.swift */,
 				5EC9940927A3A7F50051C5FF /* GameViewController.swift */,
+				5ECEBAA62AED9B52003816BE /* GameSceneDelegate.swift */,
 				5E84394B27DBCCB900485156 /* SuperSlalomAudioPlayer.swift */,
 				5E7AB20E27EC222500B4B097 /* SuperSlalomAdsManager.swift */,
 				5EC9941027A3A7F60051C5FF /* LaunchScreen.storyboard */,
@@ -422,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ED0018427ECDD4F008BB3F7 /* GameCenterDelegate.swift in Sources */,
+				5ECEBAA72AED9B52003816BE /* GameSceneDelegate.swift in Sources */,
 				5EA302D627AC132D00DA795F /* ObstacleType.swift in Sources */,
 				B109DBEA27B2A506004885CB /* Obstacle.swift in Sources */,
 				5EC9941927A3C6990051C5FF /* Player.swift in Sources */,
@@ -580,7 +584,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 9CTDKATHP7;
+				DEVELOPMENT_TEAM = UY7S7HWX9K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Super Slalom/Super-Slalom-Info.plist";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Allow app to track usage on other apps";
@@ -597,7 +601,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "Academy-Giovana.Super-Slalom";
+				PRODUCT_BUNDLE_IDENTIFIER = br.brunothuma.SuperSlalom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -614,7 +618,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9CTDKATHP7;
+				DEVELOPMENT_TEAM = UY7S7HWX9K;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Super Slalom/Super-Slalom-Info.plist";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Allow app to track usage on other apps";
@@ -631,7 +635,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "Academy-Giovana.Super-Slalom";
+				PRODUCT_BUNDLE_IDENTIFIER = br.brunothuma.SuperSlalom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

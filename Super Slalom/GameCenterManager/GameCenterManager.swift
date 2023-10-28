@@ -51,16 +51,21 @@ final class GameCenterManager {
     
     func updateGameCenterScore(with value:Int) {
         if (gcEnabled) {
-            if gcDefaultLeaderBoard != nil {
-                //            print(gcEnabled)
-                            GKLeaderboard.submitScore(value,
-                                                      context: 0,
-                                                      player: GKLocalPlayer.local,
-                                                      leaderboardIDs: [gcDefaultLeaderBoard],
-                                                      completionHandler: {error in})
-            } else {
-                mainMenuAlertLeaderboardNotAvailable()
-            }
+//            if gcDefaultLeaderBoard != nil {
+//                //            print(gcEnabled)
+//                            GKLeaderboard.submitScore(value,
+//                                                      context: 0,
+//                                                      player: GKLocalPlayer.local,
+//                                                      leaderboardIDs: [gcDefaultLeaderBoard],
+//                                                      completionHandler: {error in})
+//            } else {
+//                mainMenuAlertLeaderboardNotAvailable()
+//            }
+            GKLeaderboard.submitScore(value,
+                                      context: 0,
+                                      player: GKLocalPlayer.local,
+                                      leaderboardIDs: ["GeneralFlagsLeaderboard"],
+                                      completionHandler: {error in})
         }
     }
     

@@ -153,7 +153,7 @@ class MainMenuViewController: UIViewController {
 //            return
 //        }
         
-        let gameCenterVC = GKGameCenterViewController(leaderboardID: GameCenterManager.shared.gcDefaultLeaderBoard,
+        let gameCenterVC = GKGameCenterViewController(leaderboardID: "GeneralFlagsLeaderboard",
                                                       playerScope: .global,
                                                       timeScope: .allTime)
         gameCenterVC.gameCenterDelegate = self

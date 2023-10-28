@@ -5,7 +5,7 @@ import CoreMotion
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     static var sharedInstance: GameScene!
-    weak var gameViewController: GameViewController!
+    weak var gameSceneDelegate: GameSceneDelegate?
     
     var status: GameStatus = .intro
     
@@ -307,15 +307,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             let touchedNode = atPoint(location)
             
+            guard let gameSceneDelegate else { return }
+            
             switch touchedNode.name {
             case "GameOverRestartButton":
-                gameViewController.restartGame()
+                gameSceneDelegate.restartGame()
+            case "GameOverLeaderboardButton":
+                gameSceneDelegate.presentLeaderboard()
             case "GameOverHomeButton":
-                gameViewController.goToMainMenu()
+                dismissGameScene()
             default:
                 break
             }
         }
+    }
+    
+    // MARK: Quit gamescene methods
+    
+    private func dismissGameScene() {
+        self.removeAllChildren()
+        gameSceneDelegate?.goToMainMenu()
     }
     
     // MARK: Setup methods

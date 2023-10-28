@@ -3,6 +3,7 @@ import SpriteKit
 import GameplayKit
 import GoogleMobileAds
 import FirebaseCrashlytics
+import GameKit
 
 class GameViewController: UIViewController, GADFullScreenContentDelegate {
     
@@ -45,17 +46,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     }
     
     // MARK: Public methods
-    /// Called by GameScene to present MainMenu
-    func goToMainMenu() {
-        adsManager.gamesUntilAd -= 1
-        
-        if adsManager.gamesUntilAd <= 0 {
-            adsManager.gamesUntilAd = 3
-            shouldDisplayInterstitial()
-        }
-        
-        self.dismiss(animated: true)
-    }
+    
     
     func requestInterstitialAd() {
         
@@ -98,17 +89,6 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         gameScene.reset()
     }
     
-    func restartGame() {
-        adsManager.gamesUntilAd -= 1
-        
-        if adsManager.gamesUntilAd <= 0 {
-            adsManager.gamesUntilAd = 3
-            shouldDisplayInterstitial()
-        } else {
-            gameScene.reset()
-        }
-    }
-    
     func shouldDisplayInterstitial() {
         if interstitial != nil {
             interstitial!.present(fromRootViewController: self)
@@ -139,7 +119,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
             // Load the SKScene from 'GameScene.sks'
             // FIXME: Use delegate instead of cross reference
             gameScene = (SKScene(fileNamed: "GameScene") as! GameScene)
-            gameScene.gameViewController = self
+            gameScene.gameSceneDelegate = self
             // Set the scale mode to scale to fit the window
             gameScene.scaleMode = .aspectFill
             
@@ -152,5 +132,53 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     /// Tells the delegate that the ad presented full screen content.
     private func adDidPresentFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         print("Ad did present full screen content.")
+    }
+}
+
+extension GameViewController: GameSceneDelegate {
+    
+    func goToMainMenu() {
+        adsManager.gamesUntilAd -= 1
+        
+        if adsManager.gamesUntilAd <= 0 {
+            adsManager.gamesUntilAd = 3
+            shouldDisplayInterstitial()
+            print("SUPER MACHISTA OPRESSOR")
+        }
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func restartGame() {
+        adsManager.gamesUntilAd -= 1
+        
+        if adsManager.gamesUntilAd <= 0 {
+            adsManager.gamesUntilAd = 3
+            shouldDisplayInterstitial()
+        } else {
+            gameScene.reset()
+        }
+    }
+    
+    func presentLeaderboard() {
+        print("Presenting laederboardVC")
+        
+//        guard GameCenterManager.shared.gcDefaultLeaderBoard != nil else {
+//            self.alertLeaderboardNotAvailable()
+//            return
+//        }
+        
+        let gameCenterVC = GKGameCenterViewController(leaderboardID: "GeneralFlagsLeaderboard",
+                                                      playerScope: .global,
+                                                      timeScope: .allTime)
+        gameCenterVC.gameCenterDelegate = self
+        present(gameCenterVC, animated: true, completion: nil)
+    }
+}
+
+
+extension GameViewController: GKGameCenterControllerDelegate {
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true)
     }
 }
